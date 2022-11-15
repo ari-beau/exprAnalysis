@@ -1,12 +1,27 @@
 Package: expressionAnalysis
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Analyze and Visualize Gene Expression Data
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Authors@R: person("Arianne", "Beauregard", 
+    email = "arianne.beauregard@mail.utoronto.ca",
+    role = c("aut", "cre"))
+Maintainer: Arianne Beauregard <arianne.beauregard@mail.utoronto.ca>
+Description: Functions to analyze gene expression data to identify potential 
+    biomarkers
 License: MIT + file LICENSE
+Depends: R (>= 3.1.0)
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.2.1
+Roxygen: list(markdown = TRUE)
+Imports: 
+    corrplot,
+    dplyr,
+    ggplot2, 
+    reshape
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+VignetteBuilder: knitr
+Config/testthat/edition: 3
