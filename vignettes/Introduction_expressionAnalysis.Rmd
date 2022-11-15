@@ -110,7 +110,7 @@ exprPlot(logExpr, OVSample, "Ovarian cancer", "Normal")
 
 ## Package References
 
-[Beauregard, A. (2022) expressionAnalysis. Unpublished.](https://github.com/ari-beau/expressionAnalysis
+[Beauregard, A. (2022) expressionAnalysis. Unpublished.](https://github.com/ari-beau/expressionAnalysis)
 
 <br>
 
