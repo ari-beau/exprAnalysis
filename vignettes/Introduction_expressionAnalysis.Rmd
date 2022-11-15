@@ -14,13 +14,16 @@ vignette: >
 
 ```{r setup, include=FALSE}
 library(knitr)
-opts_chunk$set(fig.align = "center", 
-               out.width = "90%",
-               fig.width = 6, fig.height = 5.5,
-               dev.args=list(pointsize=10),
-               par = TRUE, # needed for setting hook 
-               collapse = TRUE, # collapse input & ouput code in chunks
-               warning = FALSE)
+knitr::opts_chunk$set(
+	fig.align = "center",
+	fig.height = 5.5,
+	fig.width = 6,
+	warning = FALSE,
+	collapse = TRUE,
+	dev.args = list(pointsize = 10),
+	out.width = "90%",
+	par = TRUE
+)
 knit_hooks$set(par = function(before, options, envir)
   { if(before && options$fig.show != "none") 
        par(family = "sans", mar=c(4.1,4.1,1.1,1.1), mgp=c(3,1,0), tcl=-0.5)
@@ -37,20 +40,20 @@ process of computing and visualising the data more accessible and efficient.
 
 To download **expressionAnalysis**, use the following commands:
 
-```{r}
+```{r echo=T, results='hide', warning=FALSE, message=FALSE}
 require("devtools")
 devtools::install_github("ari-beau/expressionAnalysis", build_vignettes = TRUE)
 library("expressionAnalysis")
 ```
 
 To list all sample functions available in the package:
-```{r}
+```{r echo=T, results='hide', warning=FALSE, message=FALSE}
 ls("package:expressionAnalysis")
 ```
 
 
 To list all sample datasets available in the package:
-```{r}
+```{r echo=T, results='hide', warning=FALSE, message=FALSE}
 ls("package:expressionAnalysis")
 ```
 
