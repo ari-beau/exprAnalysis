@@ -63,8 +63,6 @@ expression profiling experiment (Bowen N.J. et al., 2009).
 
 ## References
 
-<br> <br> <br>
-
 Bowen, N. J., Walker, L. D. E., Matyunina, L. V., Logani, S., Totten, K.
 A., Benigno, B. B., & McDonald, J. F. (2009). Gene expression profiling
 supports the hypothesis that human ovarian surface epithelia are

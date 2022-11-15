@@ -75,10 +75,6 @@ expression profiling experiment (Bowen N.J. et al., 2009).
 
 ## References
 
-<br>
-<br>
-<br>
-
 Bowen, N. J., Walker, L. D. E., Matyunina, L. V., Logani, S., Totten, K. A., Benigno, B. B., &amp; McDonald, J. F. (2009). Gene expression profiling supports the hypothesis that human ovarian surface epithelia are multipotent and capable of serving as ovarian cancer initiating cells. *BMC Medical Genomics*, 2(1). https://doi.org/10.1186/1755-8794-2-71 
 
 Wei T, Simko V (2021). R package 'corrplot': Visualization of a Correlation Matrix. (Version 0.92), https://github.com/taiyun/corrplot.

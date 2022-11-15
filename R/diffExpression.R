@@ -124,7 +124,7 @@ exprPlot <- function(expressionData,
                      method = "t") {
 
   # use results from rankDEG
-  resultsDF <- rankDEG(expressionData, sampleData, method, case, control)
+  resultsDF <- rankDEG(expressionData, sampleData, case, control, method)
 
   # create merged dataframe with both expression data and sample data
   allData <- merge(t(expressionData), sampleData, by = "row.names")
