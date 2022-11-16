@@ -15,7 +15,8 @@ for samples and a second identifying if the sample is case or control.}
 
 \item{genes}{A string or character vector of genes to include in the plot.
 This argument is optional; if not included, all genes will be included
-in the plot.}
+in the plot. If input is not a string or character vector, all genes will
+be included in the plot.}
 }
 \value{
 Returns a dataframe with genes sorted

@@ -69,6 +69,8 @@ rankDEG <- function(expressionData,
       result <- t.test(as.numeric(caseExpr), as.numeric(controlExpr))
     } else if (method == "wilcoxon"){
       result <- wilcox.test(as.numeric(caseExpr), as.numeric(controlExpr))
+    } else {
+      stop("Invalid input to method. Valid inputs for method are \"t\" or \"wilcoxon\".")
     }
     results[i] <- result$p.value
   }
@@ -94,7 +96,8 @@ rankDEG <- function(expressionData,
 #'    for samples and a second identifying if the sample is case or control.
 #' @param genes A string or character vector of genes to include in the plot.
 #'    This argument is optional; if not included, all genes will be included
-#'    in the plot.
+#'    in the plot. If input is not a string or character vector, all genes will
+#'    be included in the plot.
 #'
 #'
 #' @return Returns a dataframe with genes sorted
@@ -160,7 +163,6 @@ exprPlot <- function(expressionData,
   return(plot)
 
 }
-
 
 
 # [END]
