@@ -63,7 +63,17 @@ ls("package:expressionAnalysis")
 ## Example usage of package
 
 We will be using the datasets included in the package for this tutorial.
-To access them, run `OVExpression` and `OVSample`.
+The datasets are from an ovarian cancer gene expression profiling experiment 
+(Bowen N.J. et al., 2009). 
+`OVExpression` contains the gene expression data, and `OVSample` includes 
+sample information indicating if it is from a normal human ovary or from an 
+ovarian cancer epithelial cell. Run `?OVExpression` and `?OVSample` for more
+information
+```{r}
+head(OVExpression[ , 1:5])
+head(OVSample)
+```
+
 
 ### Normalization
 We can use the function `exprNormalization` to normalize the data. In this
@@ -107,7 +117,7 @@ included in the plot. Run `?exprPlot` for help.
 ```{r}
 exprPlot(expressionData = logExpr, 
          sampleData = OVSample, 
-         genes = c("PAX8", "DDR1"))
+         genes = c("PAX8", "DDR1", "THRA"))
 ```
 
 

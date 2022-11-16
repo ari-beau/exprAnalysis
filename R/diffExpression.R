@@ -100,8 +100,22 @@ rankDEG <- function(expressionData,
 #'
 #' @examples
 #' # Using OVExpression and OVSample datasets in package
-#' exprPlot(OVExpression, OVSample)
 #'
+#' # Example 1:
+#' # Exclude optional genes argument
+#'
+#' # all genes included
+#' exprPlot(expressionData = logExpr,
+#'         sampleData = OVSample)
+#'
+#'
+#' # Example 2:
+#' # Include genes argument
+#'
+#' # Only genes PAX8 and DDR1 are included
+#' exprPlot(expressionData = logExpr,
+#'         sampleData = OVSample,
+#'         genes = c("PAX8", "DDR1"))
 #'
 #' @export
 #' @importFrom reshape melt
