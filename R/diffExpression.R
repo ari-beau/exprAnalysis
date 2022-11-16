@@ -91,19 +91,16 @@ rankDEG <- function(expressionData,
 #'    rows and samples as columns.
 #' @param sampleData A dataframe of sample information, with two columns; one
 #'    for samples and a second identifying if the sample is case or control.
-#' @param case A string representing how samples are identified as cases in
-#'    sampleData.
-#' @param control A string representing how samples are identified as controls
-#'    in sampleData.
-#' @param method A parameter to specify the method used to calculate
-#'    differential expression. The possible parameters are: "t" for t-test,
-#'    "wilcoxon" for Wilcoxon rank sum test. The default option is "t".
+#' @param genes A string or character vector of genes to include in the plot.
+#'    This argument is optional; if not included, all genes will be included
+#'    in the plot.
+#'
 #'
 #' @return Returns a dataframe with genes sorted
 #'
 #' @examples
 #' # Using OVExpression and OVSample datasets in package
-#' exprPlot(OVExpression, OVSample, "Ovarian cancer", "Normal")
+#' exprPlot(OVExpression, OVSample)
 #'
 #'
 #' @export
@@ -119,12 +116,13 @@ rankDEG <- function(expressionData,
 
 exprPlot <- function(expressionData,
                      sampleData,
-                     case,
-                     control,
-                     method = "t") {
+                     genes = NULL) {
 
-  # use results from rankDEG
-  resultsDF <- rankDEG(expressionData, sampleData, case, control, method)
+  if (is.character(genes)){
+    expressionData <- expressionData[rownames(expressionData) %in% genes, ]
+  } else {
+    ; # does nothing
+  }
 
   # create merged dataframe with both expression data and sample data
   allData <- merge(t(expressionData), sampleData, by = "row.names")

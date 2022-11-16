@@ -34,7 +34,7 @@ browseVignettes("expressionAnalysis")
 `expressionAnalysis` contains 4 functions to analyze gene expression
 data. The *exprNormalization* function normalizes expression data, using
 different methods including total count normalization, log2
-transformation and standardization. The*correlationPlot* function
+transformation and standardization. The *correlationPlot* function
 calculates the pairwise correlation between genes, and produces a
 correlation plot to for visualization. The *rankDEG* function uses
 different methods, including t-test and Wilcoxon rank sum test, to rank

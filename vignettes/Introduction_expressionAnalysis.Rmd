@@ -68,7 +68,7 @@ To access them, run `OVExpression` and `OVSample`.
 ### Normalization
 We can use the function `exprNormalization` to normalize the data. In this
 example, we will set the parameter *method* to "log" to use log2 transformation.
-Run `?exprNormalization` to read documentation for other methods. 
+Run `?exprNormalization` for help and to read documentation for other methods. 
 ```{r}
 logExpr <- exprNormalization(OVExpression, method = "log")
 logExpr[1:5, 1:5]    # view first 5 rows and columns of normalized data
@@ -77,7 +77,7 @@ logExpr[1:5, 1:5]    # view first 5 rows and columns of normalized data
 
 ### Correlation
 To visualize correlation between genes, we can use the `correlationPlot` 
-function. 
+function. Run `?correlationPlot` for help.
 ```{r}
 correlationPlot(logExpr)
 ```
@@ -87,8 +87,8 @@ correlationPlot(logExpr)
 ### Ranking differentially expressed genes
 We can use the function `rankDEG` to rank the genes by differential expression 
 between cases and controls. We will set the method parameter to "wilcoxon" to
-use the Wilcoxon rank sum test. Run `?rankDEG` to read documentation for other 
-methods.  
+use the Wilcoxon rank sum test. Run `?rankDEG` for help and  to read 
+documentation for other methods.  
 ```{r}
 rankWilcoxon <- rankDEG(expressionData = logExpr,
                         sampleData = OVSample,
@@ -101,9 +101,13 @@ head(rankWilcoxon)
 
 
 To visualize differential gene expression, we use the function `exprPlot` to 
-produce a boxplot.
+produce a boxplot. We are including the optional argument `genes` to select 
+the genes we want to include in the plot. If not included, all genes will be 
+included in the plot. Run `?exprPlot` for help.
 ```{r}
-exprPlot(logExpr, OVSample, "Ovarian cancer", "Normal")
+exprPlot(expressionData = logExpr, 
+         sampleData = OVSample, 
+         genes = c("PAX8", "DDR1"))
 ```
 
 
