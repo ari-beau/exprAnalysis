@@ -16,6 +16,7 @@
 #'
 #' @export
 #' @import corrplot
+#' @importFrom stats cor
 #'
 #' @references
 #' Wei T, Simko V (2021). R package 'corrplot': Visualization of a Correlation

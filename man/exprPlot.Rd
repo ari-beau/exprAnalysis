@@ -4,7 +4,7 @@
 \alias{exprPlot}
 \title{Plot Differential Gene Expression of Case vs Control}
 \usage{
-exprPlot(expressionData, sampleData, case, control, method = "t")
+exprPlot(expressionData, sampleData, genes = NULL)
 }
 \arguments{
 \item{expressionData}{A dataframe of gene expression data, with genes as
@@ -13,15 +13,9 @@ rows and samples as columns.}
 \item{sampleData}{A dataframe of sample information, with two columns; one
 for samples and a second identifying if the sample is case or control.}
 
-\item{case}{A string representing how samples are identified as cases in
-sampleData.}
-
-\item{control}{A string representing how samples are identified as controls
-in sampleData.}
-
-\item{method}{A parameter to specify the method used to calculate
-differential expression. The possible parameters are: "t" for t-test,
-"wilcoxon" for Wilcoxon rank sum test. The default option is "t".}
+\item{genes}{A string or character vector of genes to include in the plot.
+This argument is optional; if not included, all genes will be included
+in the plot.}
 }
 \value{
 Returns a dataframe with genes sorted
@@ -33,8 +27,22 @@ the \code{ggplot2} package to create the plot.
 }
 \examples{
 # Using OVExpression and OVSample datasets in package
-exprPlot(OVExpression, OVSample, "Ovarian cancer", "Normal")
 
+# Example 1:
+# Exclude optional genes argument
+
+# all genes included
+exprPlot(expressionData = OVExpression,
+        sampleData = OVSample)
+
+
+# Example 2:
+# Include genes argument
+
+# Only genes PAX8 and DDR1 are included
+exprPlot(expressionData = OVExpression,
+        sampleData = OVSample,
+        genes = c("PAX8", "DDR1"))
 
 }
 \references{

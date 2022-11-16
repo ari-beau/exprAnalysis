@@ -7,7 +7,7 @@ Authors@R: person("Arianne", "Beauregard",
     role = c("aut", "cre"))
 Maintainer: Arianne Beauregard <arianne.beauregard@mail.utoronto.ca>
 Description: Functions to analyze gene expression data to identify potential 
-    biomarkers
+    biomarkers.
 License: MIT + file LICENSE
 Depends: R (>= 3.1.0)
 Encoding: UTF-8
@@ -15,6 +15,7 @@ LazyData: true
 RoxygenNote: 7.2.1
 Roxygen: list(markdown = TRUE)
 Imports: 
+    stats,
     corrplot,
     dplyr,
     ggplot2, 

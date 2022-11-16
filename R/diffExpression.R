@@ -43,6 +43,7 @@
 #' head(genesWilcoxon)
 #'
 #' @export
+#' @importFrom stats t.test wilcox.test
 
 rankDEG <- function(expressionData,
                     sampleData,
@@ -105,7 +106,7 @@ rankDEG <- function(expressionData,
 #' # Exclude optional genes argument
 #'
 #' # all genes included
-#' exprPlot(expressionData = logExpr,
+#' exprPlot(expressionData = OVExpression,
 #'         sampleData = OVSample)
 #'
 #'
@@ -113,7 +114,7 @@ rankDEG <- function(expressionData,
 #' # Include genes argument
 #'
 #' # Only genes PAX8 and DDR1 are included
-#' exprPlot(expressionData = logExpr,
+#' exprPlot(expressionData = OVExpression,
 #'         sampleData = OVSample,
 #'         genes = c("PAX8", "DDR1"))
 #'

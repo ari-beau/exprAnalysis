@@ -33,8 +33,7 @@ manipulate the data.
 # Example 1:
 # Using default normalization method "total"
 normalizedExpr <- exprNormalization(OVExpression)
-# view first 5 rows and columns
-normalizedExpr[1:5, 1:5]
+head(normalizedExpr[ , 1:5])
 
 # sum of each column/sample is 1
 colSums(normalizedExpr)
@@ -43,15 +42,13 @@ colSums(normalizedExpr)
 # Example 2:
 # Using log2 transformation
 logExpr <- exprNormalization(OVExpression, method = "log")
-# view first 5 rows and columns
-logExpr[1:5, 1:5]
+head(logExpr[ , 1:5])
 
 
 # Example 3:
 # Using standardization
 standardizedExpr <- exprNormalization(OVExpression, method = "standard")
-# view first 5 rows and columns
-standardizedExpr[1:5, 1:5]
+head(standardizedExpr[ , 1:5])
 
 # mean for each column/sample is 0
 round(colMeans(standardizedExpr))
