@@ -51,7 +51,12 @@ rankDEG <- function(expressionData,
                     control,
                     method = "t") {
 
+  # check case or control inputs
 
+
+  # don't rely on rownames (assumes inputs will have row names and not null)
+  # include check that rownames are not null (can include stop/warning)
+  # if no rownames, unintended side effects may occur...
   # two vectors of case and control samples
   cases <- row.names(subset(sampleData, type == case))
   controls <- row.names(subset(sampleData, type == control))
@@ -62,6 +67,7 @@ rankDEG <- function(expressionData,
   # prepare vector for results of t-test
   results <- numeric(length = length(genes))
 
+  # add comments here
   for (i in seq_along(genes)){
     caseExpr <- expressionData[genes[i], cases]
     controlExpr <- expressionData[genes[i], controls]
@@ -136,6 +142,11 @@ exprPlot <- function(expressionData,
                      sampleData,
                      genes = NULL) {
 
+  # don't rely on rownames (assumes inputs will have row names and not null)
+  # include check that rownames are not null (can include stop/warning)
+  # if no rownames, unintended side effects may occur...
+
+  # print message for incorrect input
   if (is.character(genes)){
     expressionData <- expressionData[rownames(expressionData) %in% genes, ]
   } else {
@@ -149,7 +160,10 @@ exprPlot <- function(expressionData,
   allData <- allData[, -1]
 
   # melt data to prepare for plot
-  meltedData <- reshape::melt(allData)
+  # melt prints a message, suppress message
+  suppressMessages({
+    meltedData <- reshape::melt(allData)
+  })
 
   # boxplot of data
   plot <- ggplot2::ggplot(meltedData, aes(x = variable, y = value, col = type)) +
@@ -160,7 +174,9 @@ exprPlot <- function(expressionData,
     theme(panel.grid.major = element_blank(),
           panel.grid.minor = element_blank())
 
+  # possibly change to invisble NULL and have plot produced (w/o being returned)
   return(plot)
+  # return(invisible(NULL))
 
 }
 

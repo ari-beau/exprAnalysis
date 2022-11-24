@@ -54,7 +54,7 @@ ls("package:expressionAnalysis")
 
 To list all sample datasets available in the package:
 ```{r echo=T, results='hide', warning=FALSE, message=FALSE}
-ls("package:expressionAnalysis")
+data("package:expressionAnalysis")
 ```
 
 

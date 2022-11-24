@@ -24,9 +24,11 @@
 
 correlationPlot <- function(expressionData) {
   # correlation matrix of genes
-  corrMat <- cor(t(expressionData))
+  corrMat <- stats::cor(t(expressionData))
   # correlation plot
-  plot <- corrplot(corrMat, method = 'number', order = 'AOE')
+  plot <- corrplot::corrplot(corrMat, method = 'number', order = 'AOE')
+
+  return(invisible(NULL))
 }
 
 
