@@ -1,0 +1,12 @@
+citHeader("To cite expressionAnalysis in publications use:")
+
+citEntry(entry = "Unpublished",
+  title        = "expressionAnalysis",
+  author       = "Arianne Beauregard",
+  note         = "Unpublished",
+  year         = "2022",
+
+  textVersion  =
+  paste("Beauregard, A. (2022) expressionAnalysis.
+        Unpublished. URL https://github.com/ari-beau/expressionAnalysis.")
+)
