@@ -4,11 +4,19 @@
 \alias{correlationPlot}
 \title{Calculates and Produces Correlation Plot of Genes}
 \usage{
-correlationPlot(expressionData)
+correlationPlot(expressionData, method = "spearman")
 }
 \arguments{
 \item{expressionData}{A dataframe of gene expression data, with genes as
 rows and samples as columns.}
+
+\item{method}{A parameter to specify correlation coefficient to compute.
+The options are:
+\itemize{
+\item "spearman" (default)
+\item "pearson"
+\item "kendall"
+}}
 }
 \value{
 Returns a plot of pairwise correlations between genes
@@ -20,7 +28,13 @@ genes. The function uses the \code{corrplot} package to create the plot.
 }
 \examples{
 # Using OVExpression dataset in package
+# Example 1:
+# Using default correlation coefficient "spearman"
 correlationPlot(expressionData = OVExpression)
+
+# Example 2:
+# Using spearman as method
+correlationPlot(expressionData = OVExpression, method = "spearman")
 
 }
 \references{
