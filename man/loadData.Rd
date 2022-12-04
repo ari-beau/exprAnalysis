@@ -4,7 +4,7 @@
 \alias{loadData}
 \title{Load data from files (csv/tsv/excel??)}
 \usage{
-loadData(exprFilePath, sampleFilePath, type = "tab")
+loadData(exprFilePath, sampleFilePath, sep = "tab")
 }
 \arguments{
 \item{exprFilePath}{A string of the path to the file containing gene
@@ -27,9 +27,9 @@ are:
 \value{
 Returns a list of two dataframes:
 \itemize{
-\item "expressionData" - dataframe of expression values, rows are genes, columns are samples
+\item expressionData - dataframe of expression values, rows are genes, columns are samples
 
-\item "sampleData" - dataframe of sample information, rows are samples, one column "type" with the type of sample
+\item sampleData - dataframe of sample information, rows are samples, one column "type" with the type of sample
 }
 }
 \description{
@@ -40,14 +40,19 @@ expressionAnalysis package, given the path to the files.
 # The examples below require replacing the first two arguments with valid file paths
 # Example 1:
 # Using default file separator "tab"
-# loadData("path to expression file", "path to sample file")
+# loadedData <- loadData("path to expression file", "path to sample file")
 
 # Example 2:
 # Using file separator "comma"
-# loadData("path to expression file", "path to sample file", sep = "comma")
+# loadedData <- loadData("path to expression file", "path to sample file", sep = "comma")
 
 # Example 3:
 # Using file separator "semicolon"
-# loadData("path to expression file", "path to sample file", sep = "semicolon")
+# loadedData <- loadData("path to expression file", "path to sample file", sep = "semicolon")
+
+
+# Access the dataframes
+# loadedData$expressionData    # dataframe for expression data
+# loadedData$sampleData        # dataframe for sample information
 
 }

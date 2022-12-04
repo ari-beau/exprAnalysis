@@ -21,55 +21,70 @@
 #'
 #' @return Returns a list of two dataframes:
 #' \itemize{
-#'   \item "expressionData" - dataframe of expression values, rows are genes, columns are samples
+#'   \item expressionData - dataframe of expression values, rows are genes, columns are samples
 #'
-#'   \item "sampleData" - dataframe of sample information, rows are samples, one column "type" with the type of sample
+#'   \item sampleData - dataframe of sample information, rows are samples, one column "type" with the type of sample
 #' }
 #'
 #' @examples
 #' # The examples below require replacing the first two arguments with valid file paths
 #' # Example 1:
 #' # Using default file separator "tab"
-#' # loadData("path to expression file", "path to sample file")
+#' # loadedData <- loadData("path to expression file", "path to sample file")
 #'
 #' # Example 2:
 #' # Using file separator "comma"
-#' # loadData("path to expression file", "path to sample file", sep = "comma")
+#' # loadedData <- loadData("path to expression file", "path to sample file", sep = "comma")
 #'
 #' # Example 3:
 #' # Using file separator "semicolon"
-#' # loadData("path to expression file", "path to sample file", sep = "semicolon")
+#' # loadedData <- loadData("path to expression file", "path to sample file", sep = "semicolon")
+#'
+#'
+#' # Access the dataframes
+#' # loadedData$expressionData    # dataframe for expression data
+#' # loadedData$sampleData        # dataframe for sample information
 #'
 #' @export
 
-loadData <- function(exprFilePath, sampleFilePath, type = "tab") {
-  if (type == "tab"){
+loadData <- function(exprFilePath, sampleFilePath, sep = "tab") {
+  if (sep == "tab"){
     # tsv
     exprData <- read.table(exprFilePath, row.names = 1)
     sampleData <- read.table(sampleFilePath, row.names = 1)
-  } else if (type == "comma"){
+  } else if (sep == "comma"){
     exprData <- read.csv(exprFilePath, row.names = 1)
     sampleData <- read.csv(sampleFilePath, row.names = 1)
-  } else if (type == "semicolon"){
+  } else if (sep == "semicolon"){
     exprData <- read.csv2(exprFilePath, row.names = 1)
     sampleData <- read.csv2(sampleFilePath, row.names = 1)
   } else {
-    stop("Invalid type specified. Valid inputs for type are \"tab\", \"commma\" or \"semicolon\".
+    stop("Invalid file separator specified. Valid inputs for sep are \"tab\", \"commma\" or \"semicolon\".
          You may try to change the file type or import the data as dataframes
          (see OVExpression and OVSample for examples on the dataframe format).")
   }
 
   colnames(sampleData) <- c("type") # specifying name of column
 
-  if(! setequal(intersect(colnames(exprData), rownames(sampleData)), colnames(exprData))) {
+  # we will now check if there are missing values
+  if(sum(is.na(exprData)) > 0) {
+    message("The expression data file has missing values; this may cause
+            unexpected results in other functions.")
+  } else {
+    ;
+  }
+
+  if (! setequal(intersect(colnames(exprData), rownames(sampleData)), colnames(exprData))) {
   # checking if sampleData contains info for all samples in exprData
     # missing sample info
     message("The sample information file does not contain information on all
-            samples included in the expression data file. This may causes
+            samples included in the expression data file. This may cause
             unexpected results in other functions.")
+  } else {
+    ;
   }
 
-
+  # creating list of dataframes to return
   dataList <- list(exprData, sampleData)
   names(dataList) <- c("expressionData", "sampleData")
   return(dataList)
