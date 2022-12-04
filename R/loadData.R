@@ -11,12 +11,12 @@
 #' @param sampleFilePath A string of the path to the file containing sample
 #'    information. The file should have the first column as sample names, and
 #'    the second column as their type.
-#' @param sep A parameter to specify the the separtor in the file. The options
+#' @param sep A parameter to specify the the separator in the file. The options
 #' are:
 #' \itemize{
 #'   \item "tab" - for whitespace/tab-separated values (default)
 #'   \item "comma" - for comma-separated values
-#'   \item "semicolon" - for semicolon separated values
+#'   \item "semicolon" - for semicolon-separated values
 #' }
 #'
 #' @return Returns a list of two dataframes:
@@ -25,6 +25,20 @@
 #'
 #'   \item "sampleData" - dataframe of sample information, rows are samples, one column "type" with the type of sample
 #' }
+#'
+#' @examples
+#' # The examples below require replacing the first two arguments with valid file paths
+#' # Example 1:
+#' # Using default file separator "tab"
+#' # loadData("path to expression file", "path to sample file")
+#'
+#' # Example 2:
+#' # Using file separator "comma"
+#' # loadData("path to expression file", "path to sample file", sep = "comma")
+#'
+#' # Example 3:
+#' # Using file separator "semicolon"
+#' # loadData("path to expression file", "path to sample file", sep = "semicolon")
 #'
 #' @export
 #' @import readxl
@@ -47,7 +61,7 @@ loadData <- function(exprFilePath, sampleFilePath, type = "tab") {
   } else {
     stop("Invalid type specified. Valid inputs for type are \"tab\", \"commma\" or \"semicolon\".
          You may try to change the file type or import the data as dataframes
-         (see OVExpression and OVSample for examples on the file format).")
+         (see OVExpression and OVSample for examples on the dataframe format).")
   }
 
   colnames(sampleData) <- c("type") # specifying name of column
