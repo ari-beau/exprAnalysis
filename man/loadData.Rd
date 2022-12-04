@@ -4,7 +4,7 @@
 \alias{loadData}
 \title{Load data from files (csv/tsv/excel??)}
 \usage{
-loadData(exprFilePath, sampleFilePath, type = "tsv")
+loadData(exprFilePath, sampleFilePath, type = "tab")
 }
 \arguments{
 \item{exprFilePath}{A string of the path to the file containing gene
@@ -16,10 +16,12 @@ of the matrix.}
 information. The file should have the first column as sample names, and
 the second column as their type.}
 
-\item{type}{A parameter to specify the file type. The options are:
+\item{sep}{A parameter to specify the the separtor in the file. The options
+are:
 \itemize{
-\item "tsv" - tab-separated values (default)
-\item "csv" - comma-separated values
+\item "tab" - for whitespace/tab-separated values (default)
+\item "comma" - for comma-separated values
+\item "semicolon" - for semicolon separated values
 }}
 }
 \value{
@@ -33,10 +35,6 @@ Returns a list of two dataframes:
 \description{
 A function prepares data in the format required for other functions in the
 expressionAnalysis package, given the path to the files.
-}
-\examples{
-# TODO!
-
 }
 \references{
 Wickham H, Bryan J (2022). readxl: Read Excel Files.
