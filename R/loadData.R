@@ -5,14 +5,16 @@
 #'
 #'
 #' @param exprFilePath A string of the path to the file containing gene
-#'    expression data.
+#'    expression data. The file should be a matrix with the first row as sample
+#'    names, the first column as gene names, and expression values in the rest
+#'    of the matrix.
 #' @param sampleFilePath A string of the path to the file containing sample
-#'    information
+#'    information. The file should have the first column as sample names, and
+#'    the second column as their type.
 #' @param type A parameter to specify the file type. The options are:
 #' \itemize{
 #'   \item "tsv" - tab-separated values (default)
 #'   \item "csv" - comma-separated values
-#'   \item "excel" - excel file
 #' }
 #'
 #' @return Returns a list of two dataframes:
@@ -22,9 +24,6 @@
 #'   \item "sampleData" - dataframe of sample information, rows are samples, one column "type" with the type of sample
 #' }
 #'
-#' @examples
-#' # TODO!
-#'
 #' @export
 #' @import readxl
 #'
@@ -33,15 +32,6 @@
 #' https://readxl.tidyverse.org, https://github.com/tidyverse/readxl.
 
 loadData <- function(exprFilePath, sampleFilePath, type = "tsv") {
-  # check type
-
-  # TODO: first column is rownames
-
-  # TODO: specify format in documentation and/or add arg to allow transposed
-  # matrix
-
-  # TODO: add sheet number argument (or remove excel)
-
   if (type == "tsv"){
     # tsv
     exprData <- read.table(exprFilePath, row.names = 1)
@@ -49,17 +39,20 @@ loadData <- function(exprFilePath, sampleFilePath, type = "tsv") {
   } else if (type == "csv"){
     exprData <- read.csv(exprFilePath, row.names = 1)
     sampleData <- read.csv(sampleFilePath, row.names = 1)
-  } else if (type == "excel"){
-    exprData <- readxl::read_excel(exprFilePath)
-    sampleData <- readxl::read_excel(sampleFilePath)
+    colnames(sampleData) <- c("type") # specifying name of column
   } else {
-    stop("Invalid type specified. Valid inputs for type are \"tsv\", \"csv\" or \"excel\".")
-    # possibly add comment about trying to import by self according to format
-    # and/or leaving a issue to add this file type
+    stop("Invalid type specified. Valid inputs for type are \"tsv\" or \"csv\".
+         You may try to change the file type or import the data as dataframes
+         (see OVExpression and OVSample for examples on the file format).")
   }
 
-  # check if sample info for all samples in exprData is included in sampleData
-  # if not, give message to user
+  if(! setequal(intersect(colnames(exprData), rownames(sampleData)), colnames(exprData))) {
+  # checking if sampleData contains info for all samples in exprData
+    # missing sample info
+    message("The sample information file does not contain information on all
+            samples included in the expression data file. This may causes
+            unexpected results in other functions.")
+  }
 
 
   dataList <- list(exprData, sampleData)

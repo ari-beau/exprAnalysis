@@ -8,16 +8,18 @@ loadData(exprFilePath, sampleFilePath, type = "tsv")
 }
 \arguments{
 \item{exprFilePath}{A string of the path to the file containing gene
-expression data.}
+expression data. The file should be a matrix with the first row as sample
+names, the first column as gene names, and expression values in the rest
+of the matrix.}
 
 \item{sampleFilePath}{A string of the path to the file containing sample
-information}
+information. The file should have the first column as sample names, and
+the second column as their type.}
 
 \item{type}{A parameter to specify the file type. The options are:
 \itemize{
 \item "tsv" - tab-separated values (default)
 \item "csv" - comma-separated values
-\item "excel" - excel file
 }}
 }
 \value{
