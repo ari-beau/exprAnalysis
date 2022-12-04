@@ -16,12 +16,12 @@ of the matrix.}
 information. The file should have the first column as sample names, and
 the second column as their type.}
 
-\item{sep}{A parameter to specify the the separtor in the file. The options
+\item{sep}{A parameter to specify the the separator in the file. The options
 are:
 \itemize{
 \item "tab" - for whitespace/tab-separated values (default)
 \item "comma" - for comma-separated values
-\item "semicolon" - for semicolon separated values
+\item "semicolon" - for semicolon-separated values
 }}
 }
 \value{
@@ -35,6 +35,21 @@ Returns a list of two dataframes:
 \description{
 A function prepares data in the format required for other functions in the
 expressionAnalysis package, given the path to the files.
+}
+\examples{
+# The examples below require replacing the first two arguments with valid file paths
+# Example 1:
+# Using default file separator "tab"
+# loadData("path to expression file", "path to sample file")
+
+# Example 2:
+# Using file separator "comma"
+# loadData("path to expression file", "path to sample file", sep = "comma")
+
+# Example 3:
+# Using file separator "semicolon"
+# loadData("path to expression file", "path to sample file", sep = "semicolon")
+
 }
 \references{
 Wickham H, Bryan J (2022). readxl: Read Excel Files.

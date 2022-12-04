@@ -41,11 +41,6 @@
 #' # loadData("path to expression file", "path to sample file", sep = "semicolon")
 #'
 #' @export
-#' @import readxl
-#'
-#' @references
-#' Wickham H, Bryan J (2022). readxl: Read Excel Files.
-#' https://readxl.tidyverse.org, https://github.com/tidyverse/readxl.
 
 loadData <- function(exprFilePath, sampleFilePath, type = "tab") {
   if (type == "tab"){
