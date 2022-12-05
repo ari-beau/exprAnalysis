@@ -21,7 +21,11 @@ devtools::install_github("ari-beau/expressionAnalysis", build_vignettes = TRUE)
 library("expressionAnalysis")
 ```
 
-To run the Shiny app: Under construction
+To run the Shiny app:
+
+``` r
+runExpressionAnalysis()
+```
 
 ## Overview
 
@@ -55,11 +59,13 @@ The author of the package is Arianne Beauregard. The *exprNormalization*
 function makes use of the `dplyr` R package. The *correlationPlot*
 function uses the `corrplot` R package to produce a pairwise correlation
 plot of genes. The *rankDEG* function uses different methods to rank
-differential gene expression. The *exprPlot* function uses the function
-*melt* from the `reshape` R package to reshape the expression dataframe.
-It also uses the `ggplot2` package to produce the boxplot. <br> <br> The
-datasets *OVSample* and *OVExpression* are from ovarian cancer gene
-expression profiling experiment (Bowen N.J. et al., 2009).
+differential gene expressio, and uses the function *arrange* from the
+the `dplyr`. The *exprPlot* function uses the function *melt* from the
+`reshape` R package to reshape the expression dataframe. It also uses
+the `ggplot2` package to produce the boxplot. The `assertthat` R package
+is used for checking for valid function inputs. <br> <br> The datasets
+*OVSample* and *OVExpression* are from ovarian cancer gene expression
+profiling experiment (Bowen N.J. et al., 2009).
 
 ## References
 
@@ -69,6 +75,10 @@ supports the hypothesis that human ovarian surface epithelia are
 multipotent and capable of serving as ovarian cancer initiating cells.
 *BMC Medical Genomics*, 2(1). <https://doi.org/10.1186/1755-8794-2-71>
 
+R Core Team (2022). R: A language and environment for statistical
+computing. R Foundation for Statistical Computing, Vienna, Austria. URL
+<https://www.R-project.org/>.
+
 Wei T, Simko V (2021). R package ‘corrplot’: Visualization of a
 Correlation Matrix. (Version 0.92),
 <https://github.com/taiyun/corrplot>.
@@ -76,6 +86,9 @@ Correlation Matrix. (Version 0.92),
 Wickham H, François R, Henry L, Müller K (2022). dplyr: A Grammar of
 Data Manipulation. <https://dplyr.tidyverse.org>,
 <https://github.com/tidyverse/dplyr>.
+
+Wickham H (2019). *assertthat: Easy Pre and Post Assertions*. R package
+version 0.2.1, <https://CRAN.R-project.org/package=assertthat>.
 
 Wickham H (2016). ggplot2: Elegant Graphics for Data Analysis.
 Springer-Verlag New York. ISBN 978-3-319-24277-4,

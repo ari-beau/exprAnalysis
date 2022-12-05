@@ -10,8 +10,8 @@ exprPlot(expressionData, sampleData, genes = NULL)
 \item{expressionData}{A dataframe of gene expression data, with genes as
 rows and samples as columns.}
 
-\item{sampleData}{A dataframe of sample information, with two columns; one
-for samples and a second identifying if the sample is case or control.}
+\item{sampleData}{A dataframe of sample information, with samples as rownames,
+and a column called "type" identifying if the sample is case or control.}
 
 \item{genes}{A string or character vector of genes to include in the plot.
 This argument is optional; if not included, all genes will be included

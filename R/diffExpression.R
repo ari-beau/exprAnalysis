@@ -5,18 +5,20 @@
 #'
 #' @param expressionData A dataframe of gene expression data, with genes as
 #'    rows and samples as columns.
-#' @param sampleData A dataframe of sample information, with two columns; one
-#'    for samples and a second identifying if the sample is case or control.
+#' @param sampleData A dataframe of sample information, with samples as rownames,
+#'    and a column called "type" identifying if the sample is case or control.
 #' @param case A string representing how samples are identified as cases in
-#'    sampleData.
+#'    sampleData (case sensitive).
 #' @param control A string representing how samples are identified as controls
-#'    in sampleData.
+#'    in sampleData (case sensitive).
 #' @param method A parameter to specify the method used to calculate
 #'    differential expression. The possible parameters are:
 #' \itemize{
 #'   \item "t" - t-test (default)
 #'   \item "wilcoxon" - Wilcoxon rank sum test
 #' }
+#' @param siglevel A number to specify the significance level of the test. The
+#'    default is 0.05. This is used to determine potential biomarkers.
 #'
 #' @return Returns a dataframe with genes and P-values, in increasing order.
 #'
@@ -24,7 +26,7 @@
 #' # Using OVExpression and OVSample datasets in package
 #'
 #' # Example 1:
-#' # Using default method t-test
+#' # Using default method t-test and default significance value
 #'
 #' genesTTest <- rankDEG(expressionData = OVExpression,
 #'                       sampleData = OVSample,
@@ -34,56 +36,78 @@
 #'
 #'
 #' # Example 2:
-#' # Using Wilcoxon rank sum test
+#' # Using Wilcoxon rank sum test and significance value of 0.1
 #' genesWilcoxon <- rankDEG(expressionData = OVExpression,
 #'                       sampleData = OVSample,
 #'                       case = "Ovarian cancer",
 #'                       control = "Normal",
-#'                       method = "wilcoxon")
+#'                       method = "wilcoxon",
+#'                       siglevel = 0.1)
 #' head(genesWilcoxon)
 #'
 #' @export
 #' @importFrom stats t.test wilcox.test
+#' @importFrom assertthat assert_that
+#' @importFrom dplyr arrange
+#'
+#' @references
+#' Wickham H (2019). _assertthat: Easy Pre and Post Assertions_. R package version 0.2.1,
+#' <https://CRAN.R-project.org/package=assertthat>.
 
 rankDEG <- function(expressionData,
                     sampleData,
                     case,
                     control,
-                    method = "t") {
+                    method = "t",
+                    siglevel = 0.05) {
 
-  # check case or control inputs
+  # check for invalid method input
+  assertthat::assert_that(method == "t" | method == "wilcoxon",
+                          msg = "Invalid input to method. Valid inputs for method are \"t\" or \"wilcoxon\".")
 
+  # check for case or control inputs in sampleData
+  assertthat::assert_that((case %in% sampleData[, 1]) & (control %in% sampleData[, 1]),
+                          msg = "Please ensure the case and control identifiers are correct.")
 
-  # don't rely on rownames (assumes inputs will have row names and not null)
-  # include check that rownames are not null (can include stop/warning)
-  # if no rownames, unintended side effects may occur...
-  # two vectors of case and control samples
   cases <- row.names(subset(sampleData, type == case))
   controls <- row.names(subset(sampleData, type == control))
 
   # vector of genes
   genes <- row.names(expressionData)
 
+
+  # prepare resultsDF
+  resultsDF <- data.frame(Gene = genes,
+                          TestStatistic = NA,
+                          Pval = NA,
+                          PotentialBiomarker = NA)
+
+
   # prepare vector for results of t-test
   results <- numeric(length = length(genes))
 
   # add comments here
   for (i in seq_along(genes)){
+    # separate expressionData for case and controls
     caseExpr <- expressionData[genes[i], cases]
     controlExpr <- expressionData[genes[i], controls]
     if (method == "t"){
+      # t-test
       result <- t.test(as.numeric(caseExpr), as.numeric(controlExpr))
     } else if (method == "wilcoxon"){
+      # wilcoxon rank sum test
       result <- wilcox.test(as.numeric(caseExpr), as.numeric(controlExpr))
     } else {
+      # should not reach here but message in case
       stop("Invalid input to method. Valid inputs for method are \"t\" or \"wilcoxon\".")
     }
-    results[i] <- result$p.value
+    resultsDF[i, ]$TestStatistic <- result$statistic
+    resultsDF[i, ]$Pval <- result$p.value
+    resultsDF[i, ]$PotentialBiomarker <-(result$p.value <= siglevel)
   }
 
-  resultsDF <- data.frame(Gene = genes, Pval = results)
-  resultsDF <- resultsDF[order(resultsDF$Pval), ]
-  rownames(resultsDF) <- seq(length=nrow(resultsDF))
+  # reorder by increasing p value
+  resultsDF %>% arrange(Pval)
   return(resultsDF)
 
 }
@@ -98,8 +122,8 @@ rankDEG <- function(expressionData,
 #'
 #' @param expressionData A dataframe of gene expression data, with genes as
 #'    rows and samples as columns.
-#' @param sampleData A dataframe of sample information, with two columns; one
-#'    for samples and a second identifying if the sample is case or control.
+#' @param sampleData A dataframe of sample information, with samples as rownames,
+#'    and a column called "type" identifying if the sample is case or control.
 #' @param genes A string or character vector of genes to include in the plot.
 #'    This argument is optional; if not included, all genes will be included
 #'    in the plot. If input is not a string or character vector, all genes will

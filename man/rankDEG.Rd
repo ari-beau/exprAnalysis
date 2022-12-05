@@ -4,20 +4,27 @@
 \alias{rankDEG}
 \title{Rank Differentially Expressed Genes}
 \usage{
-rankDEG(expressionData, sampleData, case, control, method = "t")
+rankDEG(
+  expressionData,
+  sampleData,
+  case,
+  control,
+  method = "t",
+  siglevel = 0.05
+)
 }
 \arguments{
 \item{expressionData}{A dataframe of gene expression data, with genes as
 rows and samples as columns.}
 
-\item{sampleData}{A dataframe of sample information, with two columns; one
-for samples and a second identifying if the sample is case or control.}
+\item{sampleData}{A dataframe of sample information, with samples as rownames,
+and a column called "type" identifying if the sample is case or control.}
 
 \item{case}{A string representing how samples are identified as cases in
-sampleData.}
+sampleData (case sensitive).}
 
 \item{control}{A string representing how samples are identified as controls
-in sampleData.}
+in sampleData (case sensitive).}
 
 \item{method}{A parameter to specify the method used to calculate
 differential expression. The possible parameters are:
@@ -25,6 +32,9 @@ differential expression. The possible parameters are:
 \item "t" - t-test (default)
 \item "wilcoxon" - Wilcoxon rank sum test
 }}
+
+\item{siglevel}{A number to specify the significance level of the test. The
+default is 0.05. This is used to determine potential biomarkers.}
 }
 \value{
 Returns a dataframe with genes and P-values, in increasing order.
@@ -37,7 +47,7 @@ identify potential biomarkers.
 # Using OVExpression and OVSample datasets in package
 
 # Example 1:
-# Using default method t-test
+# Using default method t-test and default significance value
 
 genesTTest <- rankDEG(expressionData = OVExpression,
                       sampleData = OVSample,
@@ -47,12 +57,17 @@ head(genesTTest)
 
 
 # Example 2:
-# Using Wilcoxon rank sum test
+# Using Wilcoxon rank sum test and significance value of 0.1
 genesWilcoxon <- rankDEG(expressionData = OVExpression,
                       sampleData = OVSample,
                       case = "Ovarian cancer",
                       control = "Normal",
-                      method = "wilcoxon")
+                      method = "wilcoxon",
+                      siglevel = 0.1)
 head(genesWilcoxon)
 
+}
+\references{
+Wickham H (2019). \emph{assertthat: Easy Pre and Post Assertions}. R package version 0.2.1,
+\url{https://CRAN.R-project.org/package=assertthat}.
 }

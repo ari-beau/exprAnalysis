@@ -40,4 +40,7 @@ correlationPlot(expressionData = OVExpression, method = "spearman")
 \references{
 Wei T, Simko V (2021). R package 'corrplot': Visualization of a Correlation
 Matrix. (Version 0.92), \url{https://github.com/taiyun/corrplot}.
+
+Wickham H (2019). \emph{assertthat: Easy Pre and Post Assertions}. R package version 0.2.1,
+\url{https://CRAN.R-project.org/package=assertthat}.
 }

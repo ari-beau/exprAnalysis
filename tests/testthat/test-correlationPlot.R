@@ -9,7 +9,7 @@ test_that("no errors with valid input to method", {
   expect_no_error(correlationPlot(expressionData = OVExpression,
                                   method = "kendall"))
 
-
+  # returns invisible null
   expect_null(correlationPlot(expressionData = OVExpression))
 })
 

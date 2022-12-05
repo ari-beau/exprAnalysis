@@ -30,18 +30,20 @@
 #' @export
 #' @import corrplot
 #' @importFrom stats cor
+#' @importFrom assertthat assert_that
 #'
 #' @references
 #' Wei T, Simko V (2021). R package 'corrplot': Visualization of a Correlation
 #' Matrix. (Version 0.92), <https://github.com/taiyun/corrplot>.
+#'
+#' Wickham H (2019). _assertthat: Easy Pre and Post Assertions_. R package version 0.2.1,
+#' <https://CRAN.R-project.org/package=assertthat>.
 
 correlationPlot <- function(expressionData, method = "spearman") {
-  # check if user input valid
-  if (!(method == "spearman" | method == "pearson" | method == "kendall")) {
-    stop("Invalid input to method. Valid inputs for method are \"spearman\", \"pearson\" or \"kendall\".")
-  } else{
-    ;
-  }
+  # check if method input is valid
+  assertthat::assert_that(method == "spearman" | method == "pearson" | method == "kendall",
+                          msg = "Invalid input to method. Valid inputs for method are \"spearman\", \"pearson\" or \"kendall\".")
+
 
   # correlation matrix of genes
   corrMat <- stats::cor(t(expressionData), method = method)
