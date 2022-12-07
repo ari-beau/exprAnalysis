@@ -48,7 +48,6 @@
 #' @export
 #' @importFrom stats t.test wilcox.test
 #' @importFrom assertthat assert_that
-#' @importFrom dplyr arrange
 #'
 #' @references
 #' Wickham H (2019). _assertthat: Easy Pre and Post Assertions_. R package version 0.2.1,
@@ -107,9 +106,10 @@ rankDEG <- function(expressionData,
   }
 
   # reorder by increasing p value
-  resultsDF %>% arrange(Pval)
-  return(resultsDF)
+  orderedDF <- resultsDF[with(resultsDF, order(Pval)), ]
+  row.names(orderedDF) <- NULL
 
+  return(orderedDF)
 }
 
 

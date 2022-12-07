@@ -68,7 +68,7 @@ The author of the package is Arianne Beauregard. The *exprNormalization*
 function makes use of the `dplyr` R package. The *correlationPlot* function 
 uses the `corrplot` R package to produce a pairwise correlation plot of genes. 
 The *rankDEG* function uses different methods to rank differential gene
-expressio, and uses the function *arrange* from the the `dplyr`. The *exprPlot*
+expression. The *exprPlot*
 function uses the function *melt* from the `reshape` R package to reshape the 
 expression dataframe. It also uses the `ggplot2` package to produce the boxplot. 
 The `assertthat` R package is used for checking for valid function inputs.
