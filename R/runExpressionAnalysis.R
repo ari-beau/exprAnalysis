@@ -1,6 +1,9 @@
 #' Launch Shiny App for expressionAnalysis
 #'
-#' add description
+#' A function that launches the shiny app for the expressionAnalysis package.
+#' The shiny app would load gene expression and sample data from files, and can
+#' rank differentially expressed genes in cases and controls and produce
+#' boxplots to show the visualize this.
 #'
 #' @return No return value but opens up a Shiny page.
 #'

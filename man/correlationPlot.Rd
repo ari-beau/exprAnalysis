@@ -33,8 +33,8 @@ genes. The function uses the \code{corrplot} package to create the plot.
 correlationPlot(expressionData = OVExpression)
 
 # Example 2:
-# Using spearman as method
-correlationPlot(expressionData = OVExpression, method = "spearman")
+# Using pearson as method
+correlationPlot(expressionData = OVExpression, method = "pearson")
 
 }
 \references{

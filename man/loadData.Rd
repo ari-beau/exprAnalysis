@@ -2,7 +2,7 @@
 % Please edit documentation in R/loadData.R
 \name{loadData}
 \alias{loadData}
-\title{Load data from files (csv/tsv/excel??)}
+\title{Load data from files}
 \usage{
 loadData(exprFilePath, sampleFilePath, sep = "tab")
 }
@@ -37,22 +37,15 @@ A function prepares data in the format required for other functions in the
 expressionAnalysis package, given the path to the files.
 }
 \examples{
-# The examples below require replacing the first two arguments with valid file paths
-# Example 1:
-# Using default file separator "tab"
-# loadedData <- loadData("path to expression file", "path to sample file")
+# Access data made available with this package
+OVExpresssionPath <- system.file("extdata", "OVExpression.CSV", package = "expressionAnalysis")
+OVSamplePath <- system.file("extdata", "OVSample.CSV", package = "expressionAnalysis")
 
-# Example 2:
-# Using file separator "comma"
-# loadedData <- loadData("path to expression file", "path to sample file", sep = "comma")
-
-# Example 3:
-# Using file separator "semicolon"
-# loadedData <- loadData("path to expression file", "path to sample file", sep = "semicolon")
-
+# Load data with loadData function
+loadedData <- loadData(OVExpresssionPath, OVSamplePath, sep = "comma")
 
 # Access the dataframes
-# loadedData$expressionData    # dataframe for expression data
-# loadedData$sampleData        # dataframe for sample information
+loadedData$expressionData    # dataframe for expression data
+loadedData$sampleData        # dataframe for sample information
 
 }

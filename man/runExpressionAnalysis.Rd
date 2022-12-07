@@ -10,7 +10,10 @@ runExpressionAnalysis()
 No return value but opens up a Shiny page.
 }
 \description{
-add description
+A function that launches the shiny app for the expressionAnalysis package.
+The shiny app would load gene expression and sample data from files, and can
+rank differentially expressed genes in cases and controls and produce
+boxplots to show the visualize this.
 }
 \examples{
 \dontrun{
