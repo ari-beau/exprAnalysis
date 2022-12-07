@@ -56,6 +56,9 @@
 #' <https://github.com/tidyverse/dplyr>.
 
 exprNormalization <- function(expressionData, method = "total") {
+  # check if expressionData has missing values, message that there may be
+  # unintended side effects
+
   if (method == "total"){
     # divide each column (sample) by total sum of expression levels in column
     normData <- sweep(expressionData, 2, colSums(expressionData), `/`)
