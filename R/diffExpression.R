@@ -79,7 +79,7 @@ rankDEG <- function(expressionData,
   resultsDF <- data.frame(Gene = genes,
                           TestStatistic = NA,
                           Pval = NA,
-                          PotentialBiomarker = NA)
+                          SignificantDiff = NA)
 
 
   # prepare vector for results of t-test
@@ -102,7 +102,7 @@ rankDEG <- function(expressionData,
     }
     resultsDF[i, ]$TestStatistic <- result$statistic
     resultsDF[i, ]$Pval <- result$p.value
-    resultsDF[i, ]$PotentialBiomarker <-(result$p.value <= siglevel)
+    resultsDF[i, ]$SignificantDiff <-(result$p.value <= siglevel)
   }
 
   # reorder by increasing p value

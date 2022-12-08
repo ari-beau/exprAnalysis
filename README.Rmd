@@ -34,7 +34,7 @@ library("expressionAnalysis")
 ```
 To run the Shiny app:
 ``` r
-runExpressionAnalysis()
+expressionAnalysis::runExpressionAnalysis()
 ```
 
 
@@ -55,7 +55,8 @@ The *rankDEG* function uses different methods, including t-test and Wilcoxon
 rank sum test, to rank differentially expressed genes between case samples and 
 control samples. The *exprPlot* function produces boxplots to visualize differential gene 
 expression. The *keggDiseaseGenes* function retrieves genes associated with a specific Kyoto Encyclopedia of Genes and Genomes (KEGG) disease entry. The *exprPCA* function produces a principal component analysis
-plot of the expression data.
+plot of the expression data. The *runExpressionAnalysis* function launchse the Shiny
+app for this package.
 
 The package also contains two datasets from a gene expression profiling 
 experiment in ovarian cancer, called *OVExpression* and *OVSample.* 
@@ -78,7 +79,8 @@ function uses the function *melt* from the `reshape` R package to reshape the
 expression dataframe. It also uses the `ggplot2` package to produce the boxplot. 
 The *keggDiseaseGenes* function uses the `KEGGREST` package as an interface to KEGG, 
 and uses the `stringr` package to manipulate strings. The *exprPCA* function uses the 
-`FactoMineR` package and the `factoextra` package to produce the PCA plot.  
+`FactoMineR` package and the `factoextra` package to produce the PCA plot. The `shiny`
+package was used to create the Shiny app. 
 The `assertthat` R package is used for checking for valid function inputs.
 
 <br>
@@ -89,6 +91,10 @@ expression profiling experiment (Bowen N.J. et al., 2009).
 ## References
 
 Bowen, N. J., Walker, L. D. E., Matyunina, L. V., Logani, S., Totten, K. A., Benigno, B. B., &amp; McDonald, J. F. (2009). Gene expression profiling supports the hypothesis that human ovarian surface epithelia are multipotent and capable of serving as ovarian cancer initiating cells. *BMC Medical Genomics*, 2(1). https://doi.org/10.1186/1755-8794-2-71 
+
+Chang W, Cheng J, Allaire J, Sievert C, Schloerke B, Xie Y, Allen J, McPherson J, Dipert A,
+Borges B (2022). _shiny: Web Application Framework for R_. R package version 1.7.3,
+<https://CRAN.R-project.org/package=shiny>.
 
 Kassambara A, Mundt F (2020). _factoextra: Extract and Visualize the Results of Multivariate
 Data Analyses_. R package version 1.0.7, <https://CRAN.R-project.org/package=factoextra>.

@@ -24,7 +24,7 @@ library("expressionAnalysis")
 To run the Shiny app:
 
 ``` r
-runExpressionAnalysis()
+expressionAnalysis::runExpressionAnalysis()
 ```
 
 ## Overview
@@ -48,7 +48,9 @@ samples and control samples. The *exprPlot* function produces boxplots
 to visualize differential gene expression. The *keggDiseaseGenes*
 function retrieves genes associated with a specific Kyoto Encyclopedia
 of Genes and Genomes (KEGG) disease entry. The *exprPCA* function
-produces a principal component analysis plot of the expression data.
+produces a principal component analysis plot of the expression data. The
+*runExpressionAnalysis* function launchse the Shiny app for this
+package.
 
 The package also contains two datasets from a gene expression profiling
 experiment in ovarian cancer, called *OVExpression* and *OVSample.*
@@ -71,9 +73,8 @@ package to produce the boxplot. The *keggDiseaseGenes* function uses the
 `KEGGREST` package as an interface to KEGG, and uses the `stringr`
 package to manipulate strings. The *exprPCA* function uses the
 `FactoMineR` package and the `factoextra` package to produce the PCA
-plot.  
-The `assertthat` R package is used for checking for valid function
-inputs.
+plot. The `shiny` package was used to create the Shiny app. The
+`assertthat` R package is used for checking for valid function inputs.
 
 <br> <br> The datasets *OVSample* and *OVExpression* are from ovarian
 cancer gene expression profiling experiment (Bowen N.J. et al., 2009).
@@ -85,6 +86,11 @@ A., Benigno, B. B., & McDonald, J. F. (2009). Gene expression profiling
 supports the hypothesis that human ovarian surface epithelia are
 multipotent and capable of serving as ovarian cancer initiating cells.
 *BMC Medical Genomics*, 2(1). <https://doi.org/10.1186/1755-8794-2-71>
+
+Chang W, Cheng J, Allaire J, Sievert C, Schloerke B, Xie Y, Allen J,
+McPherson J, Dipert A, Borges B (2022). *shiny: Web Application
+Framework for R*. R package version 1.7.3,
+<https://CRAN.R-project.org/package=shiny>.
 
 Kassambara A, Mundt F (2020). *factoextra: Extract and Visualize the
 Results of Multivariate Data Analyses*. R package version 1.0.7,

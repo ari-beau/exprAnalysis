@@ -140,6 +140,16 @@ exprPCA(expressionData = logExpr,
 ```
 
 
+### Shiny app for expressionAnalysis
+The Shiny app allows users to upload expression and sample data from a file, view 
+and normalize data, rank genes based on their differential expression in cases vs controls, and 
+produce a boxplot to display this. 
+To launch the Shiny app, use the function `runExpressionAnalysis`. Run `?runExpressionAnalysis` to view 
+documentation.
+``` r
+expressionAnalysis::runExpressionAnalysis()
+```
+
 
 ## Package References
 
