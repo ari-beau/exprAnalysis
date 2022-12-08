@@ -18,18 +18,24 @@ test_that("input to genes argument", {
   # all/some genes given not included in expressionData
   expect_no_error(exprPlot(expressionData = OVExpression,
                            sampleData = OVSample,
-                           genes = "BRCA1"))
+                           genes = "MAPK1"))
+  # message given if all genes not included
+  expect_message(exprPlot(expressionData = OVExpression,
+                          sampleData = OVSample,
+                          genes = "MAPK1"))
   expect_no_error(exprPlot(expressionData = OVExpression,
                            sampleData = OVSample,
-                           genes = c("BRCA1")))
-  expect_no_error(exprPlot(expressionData = OVExpression,
-                           sampleData = OVSample,
-                           genes = c("BRCA1", "DDR1")))
+                           genes = c("MAPK1", "DDR1")))
+  # no message if some included
+  expect_no_message(exprPlot(expressionData = OVExpression,
+                             sampleData = OVSample,
+                             genes = c("MAPK1", "DDR1")))
 
   # all genes given included in expressionData
   expect_no_error(exprPlot(expressionData = OVExpression,
                            sampleData = OVSample,
                            genes = c("UBA7", "PAX8", "DDR1")))
+
 
 })
 
