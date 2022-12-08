@@ -16,6 +16,31 @@ ui <- fluidPage(
     # Sidebar panel for inputs ----
     sidebarPanel(
 
+      tags$p("This is a Shiny App from expressionAnalysis in R.
+              It loads gene expression and sample data from files, and can
+              rank differentially expressed genes in cases and controls and
+              produce boxplots to visualize this."),
+
+      tags$hr(),
+
+
+      tags$div("Below are example expression and sample data files. The datasets
+      are subsets of data from an ovarian cancer gene expression profiling
+      experiment ",
+      tags$a(href = "https://pubmed.ncbi.nlm.nih.gov/20040092/", "(Bowen N.J. et al., 2009)"),
+      ". The data contains expression data
+      for 10 genes in 24 samples (12 normal human ovaries and 12 ovarian cancer
+      epithelial cells)."),
+
+      br(),
+
+
+      downloadButton("expression", "Download expression data"),
+      downloadButton("sample", "Download sample data"),
+
+      # Horizontal line ----
+      tags$hr(),
+
       # Input: Select a file ----
       fileInput("file1", "Choose Expression CSV File",
                 multiple = FALSE,
@@ -30,12 +55,6 @@ ui <- fluidPage(
                            "text/comma-separated-values,text/plain",
                            ".csv")),
 
-      # Horizontal line ----
-      tags$hr(),
-
-      # Input: Checkbox if file has header ----
-      checkboxInput("header", "Header", TRUE),
-
       # Input: Select separator ----
       radioButtons("sep", "Separator",
                    choices = c(Comma = "comma",
@@ -46,11 +65,10 @@ ui <- fluidPage(
       # Horizontal line ----
       tags$hr(),
 
-      # Input: Select number of rows to display ----
-      radioButtons("disp", "Display",
-                   choices = c(Head = "head",
-                               All = "all"),
-                   selected = "head")
+      tags$p("Please specify how the case and controls are identified in the
+             sample data."),
+      textInput("case", "Case name", value = "Ovarian cancer"),
+      textInput("control", "Control name", value = "Normal")
 
     ),
 
@@ -59,17 +77,24 @@ ui <- fluidPage(
       # Output: Tabset w/ plot, summary, and table ----
       tabsetPanel(type = "tabs",
                   tabPanel("Data",
+                           br(),
                            # Input: Select file to view----
-                           radioButtons("viewing", "File to view",
-                                        choices = c(Expression = "expression",
-                                                    Sample = "sample"),
-                                        selected = "expression"),
+                           splitLayout(radioButtons("viewing", "File to view",
+                                                 choices = c(Expression = "expression",
+                                                             Sample = "sample"),
+                                                 selected = "expression",
+                                                 inline = TRUE),
+                                    radioButtons("disp", "Display",
+                                                 choices = c(Head = "head",
+                                                             All = "all"),
+                                                 selected = "head",
+                                                 inline = TRUE)
+                           ),
 
                            tableOutput("contents")),
 
                   tabPanel("Differential Gene Expression",
-                           textInput("case", "Case name"),
-                           textInput("control", "Control name"),
+                           br(),
                            radioButtons("method", "Method to calculate differential expression",
                                         choices = c("t-test" = "t",
                                                     "Wilcoxon rank sum test" = "wilcoxon"),
@@ -77,6 +102,7 @@ ui <- fluidPage(
                            tableOutput("deg")),
 
                   tabPanel("Plot",
+                           br(),
                            plotOutput("plot")))
 
 
@@ -182,6 +208,20 @@ server <- function(input, output) {
     exprPlot(expressionData = expressionData$df_data,
     sampleData = sampleData$df_data)
   })
+
+  output$expression <- downloadHandler(
+    filename = "OVExpression.csv",
+    content = function(file) {
+      download.file("https://raw.githubusercontent.com/ari-beau/expressionAnalysis/master/inst/extdata/OVExpression.csv", file)
+    }
+  )
+
+  output$sample <- downloadHandler(
+    filename = "OVSample.csv",
+    content = function(file) {
+      download.file("https://raw.githubusercontent.com/ari-beau/expressionAnalysis/master/inst/extdata/OVSample.csv", file)
+    }
+  )
 
 }
 
