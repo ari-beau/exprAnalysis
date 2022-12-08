@@ -35,16 +35,17 @@ data(package = "expressionAnalysis")
 browseVignettes("expressionAnalysis")
 ```
 
-`expressionAnalysis` contains 4 functions to analyze gene expression
-data. The *exprNormalization* function normalizes expression data, using
-different methods including total count normalization, log2
-transformation and standardization. The *correlationPlot* function
-calculates the pairwise correlation between genes, and produces a
-correlation plot to for visualization. The *rankDEG* function uses
-different methods, including t-test and Wilcoxon rank sum test, to rank
-differentially expressed genes between case samples and control samples.
-The *exprPlot* produces boxplots to visualize differential gene
-expression.
+`expressionAnalysis` contains 5 functions to analyze gene expression
+data. The \* loadData\* function loads input data files in the format
+required for functions in the package. The *exprNormalization* function
+normalizes expression data, using different methods including total
+count normalization, log2 transformation and standardization. The
+*correlationPlot* function calculates the pairwise correlation between
+genes, and produces a correlation plot to for visualization. The
+*rankDEG* function uses different methods, including t-test and Wilcoxon
+rank sum test, to rank differentially expressed genes between case
+samples and control samples. The *exprPlot* produces boxplots to
+visualize differential gene expression.
 
 The package also contains two datasets from a gene expression profiling
 experiment in ovarian cancer, called *OVExpression* and *OVSample.*
