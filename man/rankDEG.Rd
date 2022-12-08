@@ -14,7 +14,7 @@ rankDEG(
 )
 }
 \arguments{
-\item{expressionData}{A dataframe of gene expression data, with genes as
+\item{expressionData}{A dataframe of numeric gene expression data, with genes as
 rows and samples as columns.}
 
 \item{sampleData}{A dataframe of sample information, with samples as rownames,
@@ -37,7 +37,8 @@ differential expression. The possible parameters are:
 default is 0.05. This is used to determine potential biomarkers.}
 }
 \value{
-Returns a dataframe with genes and P-values, in increasing order.
+Returns a dataframe with genes, test statistic, P-values, and if
+there is expression is significantly different, ordered by increasing P-values.
 }
 \description{
 Identify and rank differentially expressed genes using expression data to

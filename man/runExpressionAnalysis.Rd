@@ -14,7 +14,7 @@ A function that launches the shiny app for the expressionAnalysis package.
 The shiny app would load gene expression and sample data from files, show the
 pairwise correlation between genes, rank differentially expressed genes in
 cases and controls and produce boxplots to show the visualize this. The code
-in runExpressionAnalysis is adapted from from the code in app.R from the
+in runExpressionAnalysis is adapted from from the code in runTestingPackage.R from the
 TestingPackage package (Silva A., 2022).
 }
 \examples{

@@ -7,7 +7,7 @@
 exprNormalization(expressionData, method = "log")
 }
 \arguments{
-\item{expressionData}{A dataframe of gene expression data, with genes as
+\item{expressionData}{A dataframe of numeric gene expression data, with genes as
 rows and samples as columns.}
 
 \item{method}{A parameter to specify normalization method. The options are:

@@ -7,7 +7,7 @@
 exprPlot(expressionData, sampleData, genes = NULL)
 }
 \arguments{
-\item{expressionData}{A dataframe of gene expression data, with genes as
+\item{expressionData}{A dataframe of numeric gene expression data, with genes as
 rows and samples as columns.}
 
 \item{sampleData}{A dataframe of sample information, with samples as rownames,
@@ -19,7 +19,7 @@ in the plot. If input is not a string or character vector, all genes will
 be included in the plot.}
 }
 \value{
-Returns a dataframe with genes sorted
+Returns a boxplot of expression of specified genes in cases and controls.
 }
 \description{
 Produces boxplots of gene expression data for specified genes. The function

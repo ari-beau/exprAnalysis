@@ -3,7 +3,7 @@
 #' Identify and rank differentially expressed genes using expression data to
 #' identify potential biomarkers.
 #'
-#' @param expressionData A dataframe of gene expression data, with genes as
+#' @param expressionData A dataframe of numeric gene expression data, with genes as
 #'    rows and samples as columns.
 #' @param sampleData A dataframe of sample information, with samples as rownames,
 #'    and a column called "type" identifying if the sample is case or control.
@@ -20,7 +20,8 @@
 #' @param siglevel A number to specify the significance level of the test. The
 #'    default is 0.05. This is used to determine potential biomarkers.
 #'
-#' @return Returns a dataframe with genes and P-values, in increasing order.
+#' @return Returns a dataframe with genes, test statistic, P-values, and if
+#' there is expression is significantly different, ordered by increasing P-values.
 #'
 #' @examples
 #' # Using OVExpression and OVSample datasets in package
@@ -120,7 +121,7 @@ rankDEG <- function(expressionData,
 #' uses the `melt` function from the `reshape` package to manipulate data, and
 #' the `ggplot2` package to create the plot.
 #'
-#' @param expressionData A dataframe of gene expression data, with genes as
+#' @param expressionData A dataframe of numeric gene expression data, with genes as
 #'    rows and samples as columns.
 #' @param sampleData A dataframe of sample information, with samples as rownames,
 #'    and a column called "type" identifying if the sample is case or control.
@@ -130,7 +131,7 @@ rankDEG <- function(expressionData,
 #'    be included in the plot.
 #'
 #'
-#' @return Returns a dataframe with genes sorted
+#' @return Returns a boxplot of expression of specified genes in cases and controls.
 #'
 #' @examples
 #' # Using OVExpression and OVSample datasets in package

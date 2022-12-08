@@ -2,12 +2,12 @@
 #'
 #' A function that creates a PCA plot based on the expression data.
 #'
-#' @param expressionData A dataframe of gene expression data, with genes as
+#' @param expressionData A dataframe of numeric gene expression data, with genes as
 #'    rows and samples as columns.
 #' @param sampleData A dataframe of sample information, with samples as rownames,
 #'    and a column called "type" identifying if the sample is case or control.
 #'
-#' @return Plot
+#' @return Produces a PCA Plot, with samples coloured according to their type
 #'
 #' @examples
 #' # Example

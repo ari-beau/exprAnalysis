@@ -6,7 +6,7 @@
 #' manipulate the data.
 #'
 #'
-#' @param expressionData A dataframe of gene expression data, with genes as
+#' @param expressionData A dataframe of numeric gene expression data, with genes as
 #'    rows and samples as columns.
 #' @param method A parameter to specify normalization method. The options are:
 #' \itemize{

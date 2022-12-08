@@ -7,7 +7,7 @@
 correlationPlot(expressionData, method = "spearman")
 }
 \arguments{
-\item{expressionData}{A dataframe of gene expression data, with genes as
+\item{expressionData}{A dataframe of numeric gene expression data, with genes as
 rows and samples as columns.}
 
 \item{method}{A parameter to specify correlation coefficient to compute.

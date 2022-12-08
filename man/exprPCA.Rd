@@ -7,14 +7,14 @@
 exprPCA(expressionData, sampleData)
 }
 \arguments{
-\item{expressionData}{A dataframe of gene expression data, with genes as
+\item{expressionData}{A dataframe of numeric gene expression data, with genes as
 rows and samples as columns.}
 
 \item{sampleData}{A dataframe of sample information, with samples as rownames,
 and a column called "type" identifying if the sample is case or control.}
 }
 \value{
-Plot
+Produces a PCA Plot, with samples coloured according to their type
 }
 \description{
 A function that creates a PCA plot based on the expression data.
