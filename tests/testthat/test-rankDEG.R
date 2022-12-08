@@ -8,7 +8,7 @@ test_that("t-test (no argument given)", {
 
   # ensure dimensions are correct
   expect_identical(nrow(genesTTest), nrow(OVExpression))
-  expect_identical(ncol(genesTTest), 2L)
+  expect_identical(ncol(genesTTest), 4L)
 
   # ensure all genes are included
   expect_identical(sort(genesTTest$Gene), sort(rownames(OVExpression)))
@@ -24,7 +24,7 @@ test_that("t-test (with argument)", {
 
   # ensure dimensions are correct
   expect_identical(nrow(genesTTest), nrow(OVExpression))
-  expect_identical(ncol(genesTTest), 2L)
+  expect_identical(ncol(genesTTest), 4L)
 
   # ensure all genes are included
   expect_identical(sort(genesTTest$Gene), sort(rownames(OVExpression)))
@@ -41,7 +41,7 @@ test_that("Wilcoxon rank sum test", {
 
   # ensure dimensions are correct
   expect_identical(nrow(genesWilcoxon), nrow(OVExpression))
-  expect_identical(ncol(genesWilcoxon), 2L)
+  expect_identical(ncol(genesWilcoxon), 4L)
 
   # ensure all genes are included
   expect_identical(sort(genesWilcoxon$Gene), sort(rownames(OVExpression)))

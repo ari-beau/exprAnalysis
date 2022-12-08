@@ -46,9 +46,9 @@ genes, and produces a correlation plot to for visualization. The
 rank sum test, to rank differentially expressed genes between case
 samples and control samples. The *exprPlot* function produces boxplots
 to visualize differential gene expression. The *keggDiseaseGenes*
-retrieves genes associated with a specific Kyoto Encyclopedia of Genes
-and Genomes (KEGG) disease entry. the *exprPCA* function produces a
-principal component analysis plot of the expression data.
+function retrieves genes associated with a specific Kyoto Encyclopedia
+of Genes and Genomes (KEGG) disease entry. The *exprPCA* function
+produces a principal component analysis plot of the expression data.
 
 The package also contains two datasets from a gene expression profiling
 experiment in ovarian cancer, called *OVExpression* and *OVSample.*

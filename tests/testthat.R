@@ -10,3 +10,4 @@ library(testthat)
 library(expressionAnalysis)
 
 test_check("expressionAnalysis")
+

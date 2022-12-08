@@ -1,34 +1,15 @@
 library(expressionAnalysis)
 
-test_that("total count normalization (no argument given)", {
-  normalizedExpr <- exprNormalization(OVExpression)
+test_that("log2 transformation(no argument given)", {
+  logExpr <- exprNormalization(OVExpression)
 
   # dataframe structure does not change
-  expect_identical(dim(normalizedExpr), dim(OVExpression))
-  expect_identical(rownames(normalizedExpr), rownames(OVExpression))
-  expect_identical(colnames(normalizedExpr), colnames(OVExpression))
+  expect_identical(dim(logExpr), dim(OVExpression))
+  expect_identical(rownames(logExpr), rownames(OVExpression))
+  expect_identical(colnames(logExpr), colnames(OVExpression))
 
-  # vector of sums of each column/sample
-  normColSums <- as.vector(colSums(normalizedExpr))
-
-  # sum of each column/sample is 1
-  expect_equal(normColSums, rep(1, ncol(normalizedExpr)))
-
-})
-
-test_that("total count normalization (with argument)", {
-  normalizedExpr <- exprNormalization(OVExpression, method = "total")
-
-  # dataframe structure does not change
-  expect_identical(dim(normalizedExpr), dim(OVExpression))
-  expect_identical(rownames(normalizedExpr), rownames(OVExpression))
-  expect_identical(colnames(normalizedExpr), colnames(OVExpression))
-
-  # vector of sums of each column/sample
-  normColSums <- as.vector(colSums(normalizedExpr))
-
-  # sum of each column/sample is 1
-  expect_equal(normColSums, rep(1, ncol(normalizedExpr)))
+  # values should be log base 2
+  expect_equal(logExpr, log(OVExpression, base = 2))
 
 })
 
@@ -43,6 +24,23 @@ test_that("log2 transformation", {
 
   # values should be log base 2
   expect_equal(logExpr, log(OVExpression, base = 2))
+
+})
+
+
+test_that("total count normalization", {
+  normalizedExpr <- exprNormalization(OVExpression, method = "total")
+
+  # dataframe structure does not change
+  expect_identical(dim(normalizedExpr), dim(OVExpression))
+  expect_identical(rownames(normalizedExpr), rownames(OVExpression))
+  expect_identical(colnames(normalizedExpr), colnames(OVExpression))
+
+  # vector of sums of each column/sample
+  normColSums <- as.vector(colSums(normalizedExpr))
+
+  # sum of each column/sample is 1
+  expect_equal(normColSums, rep(1, ncol(normalizedExpr)))
 
 })
 

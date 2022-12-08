@@ -130,7 +130,9 @@ exprPlot(expressionData = logExpr,
          genes = keggGenes)
 ```
 
-To produce a Principal Component Analysis plot of the expression data, we can 
+
+### Principal Component Analysis
+To produce a principal component analysis (PCA) plot of the expression data, we can 
 use the function `exprPCA`. Run `?exprPCA` for help.
 ```{r}
 exprPCA(expressionData = logExpr, 

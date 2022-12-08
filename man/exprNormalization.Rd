@@ -32,17 +32,17 @@ manipulate the data.
 
 # Example 1:
 # Using default normalization method "log"
-normalizedExpr <- exprNormalization(OVExpression)
-head(normalizedExpr[ , 1:5])
-
-# sum of each column/sample is 1
-colSums(normalizedExpr)
+logExpr <- exprNormalization(OVExpression)
+head(logExpr[ , 1:5])
 
 
 # Example 2:
 # Using total count normalization
-logExpr <- exprNormalization(OVExpression, method = "total")
-head(logExpr[ , 1:5])
+normalizedExpr <- exprNormalization(OVExpression, method = "total")
+head(normalizedExpr[ , 1:5])
+
+# sum of each column/sample is 1
+colSums(normalizedExpr)
 
 
 # Example 3:

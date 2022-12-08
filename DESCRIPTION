@@ -24,7 +24,9 @@ Imports:
     shiny, 
     stringr, 
     FactoMineR, 
-    factoextra
+    factoextra, 
+    KEGGREST, 
+    assertthat
 Suggests: 
     knitr,
     rmarkdown,
