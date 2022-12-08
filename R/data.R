@@ -21,7 +21,7 @@
 #'
 "OVExpression"
 
-#' Sample Information from an ovarian cancer experiment
+#' Sample Information from an Ovarian Cancer Experiment
 #'
 #' Sample information from ovarian cancer gene expression profiling of
 #' 24 samples (12 normal human ovaries and 12 ovarian cancer epithelial cells).
