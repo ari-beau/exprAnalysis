@@ -177,7 +177,16 @@ exprPlot <- function(expressionData,
 
   # print message for incorrect input
   if (is.character(genes)){
-    expressionData <- expressionData[rownames(expressionData) %in% genes, ]
+    subsetExpr <- expressionData[rownames(expressionData) %in% genes, ]
+    if (nrow(subsetExpr) == 0){
+      # this means none of the genes are in expressionData
+      # will continue to plot all genes but give a warning to the user
+      message("None of the genes in the genes argument are included in expressionData.
+              All genes from expressionData will be included")
+    } else {
+      # replace expressionData with the subset
+      expressionData <- subsetExpr
+    }
   } else {
     ; # does nothing
   }

@@ -117,7 +117,9 @@ ui <- fluidPage(
                   tabPanel("Expression Plot",
                            br(),
                            tags$p("Type in names of genes to include into the plot.
-                                  Each gene should be separated by a comma. If textbox is empty, all genes are included."),
+                                  Each gene should be separated by a comma. If
+                                  textbox is empty or if none of the genes given are in
+                                  the dataset, all genes are included in the plot."),
                            textInput("include", "Genes", value = ""),
                            plotOutput("plot")))
 
