@@ -145,11 +145,19 @@ rankDEG <- function(expressionData,
 #'
 #' # Example 2:
 #' # Include genes argument
-#'
 #' # Only genes PAX8 and DDR1 are included
 #' exprPlot(expressionData = OVExpression,
 #'         sampleData = OVSample,
 #'         genes = c("PAX8", "DDR1"))
+#'
+#'
+#' # Example 3:
+#' # Using keggDiseaseGenes to get a list of genes associated with a disease
+#' # Get genes associated with ovarian cancer (KEGG entry H00027)
+#' OVgenes <- keggDiseaseGenes(entryID = "H00027")
+#' exprPlot(expressionData = OVExpression,
+#'         sampleData = OVSample,
+#'         genes = OVgenes)
 #'
 #' @export
 #' @importFrom reshape melt
@@ -165,10 +173,6 @@ rankDEG <- function(expressionData,
 exprPlot <- function(expressionData,
                      sampleData,
                      genes = NULL) {
-
-  # don't rely on rownames (assumes inputs will have row names and not null)
-  # include check that rownames are not null (can include stop/warning)
-  # if no rownames, unintended side effects may occur...
 
   # print message for incorrect input
   if (is.character(genes)){
@@ -198,9 +202,7 @@ exprPlot <- function(expressionData,
     theme(panel.grid.major = element_blank(),
           panel.grid.minor = element_blank())
 
-  # possibly change to invisble NULL and have plot produced (w/o being returned)
   return(plot)
-  # return(invisible(NULL))
 
 }
 

@@ -111,13 +111,30 @@ head(rankWilcoxon)
 
 
 To visualize differential gene expression, we use the function `exprPlot` to 
-produce a boxplot. We are including the optional argument `genes` to select 
-the genes we want to include in the plot. If not included, all genes will be 
-included in the plot. Run `?exprPlot` for help.
+produce a boxplot. 
+
+We will create a boxplot with genes associated with the KEGG 
+Disease entry for ovarian cancer (Entry ID: H00027), so we will use the function
+`keggDiseaseGenes` to get the genes. Run `?keggDiseaseGenes` for help.
+
+We use this as input to the optional argument `genes` to select these genes for
+the plot. If the `genes` argument is excluded, all genes will be included in the
+plot. Run `?exprPlot` for help.
 ```{r}
+# Get genes associated with disease entry
+keggGenes <- keggDiseaseGenes(entryID = "H00027")
+
+# Create plot
 exprPlot(expressionData = logExpr, 
          sampleData = OVSample, 
-         genes = c("PAX8", "DDR1", "THRA"))
+         genes = keggGenes)
+```
+
+To produce a Principal Component Analysis plot of the expression data, we can 
+use the function `exprPCA`. Run `?exprPCA` for help.
+```{r}
+exprPCA(expressionData = logExpr, 
+        sampleData = OVSample)
 ```
 
 
@@ -132,7 +149,23 @@ exprPlot(expressionData = logExpr,
 
 Bowen, N. J., Walker, L. D. E., Matyunina, L. V., Logani, S., Totten, K. A., Benigno, B. B., & McDonald, J. F. (2009). Gene expression profiling supports the hypothesis that human ovarian surface epithelia are multipotent and capable of serving as ovarian cancer initiating cells. BMC Medical Genomics, 2(1). https://doi.org/10.1186/1755-8794-2-71
 
+Kassambara A, Mundt F (2020). _factoextra: Extract and Visualize the Results of Multivariate
+Data Analyses_. R package version 1.0.7, <https://CRAN.R-project.org/package=factoextra>.
+
+R Core Team (2022). R: A language and environment for statistical computing. R Foundation for
+Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
+
+Sebastien Le, Julie Josse, Francois Husson (2008). FactoMineR: An R Package
+for Multivariate Analysis. Journal of Statistical Software, 25(1), 1-18.
+10.18637/jss.v025.i01
+
+Tenenbaum D, Maintainer B (2022). _KEGGREST: Client-side REST access to the
+Kyoto Encyclopedia of Genes and Genomes (KEGG)_. R package version 1.36.3.
+
 Wei T, Simko V (2021). R package ‘corrplot’: Visualization of a Correlation Matrix. (Version 0.92), https://github.com/taiyun/corrplot.
+
+Wickham H (2022). _stringr: Simple, Consistent Wrappers for Common String
+Operations_. R packageversion 1.5.0, <https://CRAN.R-project.org/package=stringr>.
 
 Wickham H, François R, Henry L, Müller K (2022). dplyr: A Grammar of Data Manipulation. https://dplyr.tidyverse.org, https://github.com/tidyverse/dplyr.
 

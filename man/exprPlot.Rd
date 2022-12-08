@@ -39,11 +39,19 @@ exprPlot(expressionData = OVExpression,
 
 # Example 2:
 # Include genes argument
-
 # Only genes PAX8 and DDR1 are included
 exprPlot(expressionData = OVExpression,
         sampleData = OVSample,
         genes = c("PAX8", "DDR1"))
+
+
+# Example 3:
+# Using keggDiseaseGenes to get a list of genes associated with a disease
+# Get genes associated with ovarian cancer (KEGG entry H00027)
+OVgenes <- keggDiseaseGenes(entryID = "H00027")
+exprPlot(expressionData = OVExpression,
+        sampleData = OVSample,
+        genes = OVgenes)
 
 }
 \references{

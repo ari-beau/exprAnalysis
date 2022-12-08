@@ -35,17 +35,20 @@ data(package = "expressionAnalysis")
 browseVignettes("expressionAnalysis")
 ```
 
-`expressionAnalysis` contains 5 functions to analyze gene expression
-data. The \* loadData\* function loads input data files in the format
-required for functions in the package. The *exprNormalization* function
-normalizes expression data, using different methods including total
-count normalization, log2 transformation and standardization. The
+`expressionAnalysis` contains 8 functions to help analyze gene
+expression data. The *loadData* function loads input data files in the
+format required for functions in the package. The *exprNormalization*
+function normalizes expression data, using different methods including
+total count normalization, log2 transformation and standardization. The
 *correlationPlot* function calculates the pairwise correlation between
 genes, and produces a correlation plot to for visualization. The
 *rankDEG* function uses different methods, including t-test and Wilcoxon
 rank sum test, to rank differentially expressed genes between case
-samples and control samples. The *exprPlot* produces boxplots to
-visualize differential gene expression.
+samples and control samples. The *exprPlot* function produces boxplots
+to visualize differential gene expression. The *keggDiseaseGenes*
+retrieves genes associated with a specific Kyoto Encyclopedia of Genes
+and Genomes (KEGG) disease entry. the *exprPCA* function produces a
+principal component analysis plot of the expression data.
 
 The package also contains two datasets from a gene expression profiling
 experiment in ovarian cancer, called *OVExpression* and *OVSample.*
@@ -56,14 +59,22 @@ An overview of the package is illustrated below.
 
 ## Contributions
 
-The author of the package is Arianne Beauregard. The *exprNormalization*
-function makes use of the `dplyr` R package. The *correlationPlot*
-function uses the `corrplot` R package to produce a pairwise correlation
-plot of genes. The *rankDEG* function uses different methods to rank
-differential gene expression. The *exprPlot* function uses the function
-*melt* from the `reshape` R package to reshape the expression dataframe.
-It also uses the `ggplot2` package to produce the boxplot. The
-`assertthat` R package is used for checking for valid function inputs.
+The author of the package is Arianne Beauregard. The *loadData* function
+reads in data different file types to prepare the data for the rest of
+the package. The *exprNormalization* function makes use of the `dplyr` R
+package. The *correlationPlot* function uses the `corrplot` R package to
+produce a pairwise correlation plot of genes. The *rankDEG* function
+uses different methods to rank differential gene expression. The
+*exprPlot* function uses the function *melt* from the `reshape` R
+package to reshape the expression dataframe. It also uses the `ggplot2`
+package to produce the boxplot. The *keggDiseaseGenes* function uses the
+`KEGGREST` package as an interface to KEGG, and uses the `stringr`
+package to manipulate strings. The *exprPCA* function uses the
+`FactoMineR` package and the `factoextra` package to produce the PCA
+plot.  
+The `assertthat` R package is used for checking for valid function
+inputs.
+
 <br> <br> The datasets *OVSample* and *OVExpression* are from ovarian
 cancer gene expression profiling experiment (Bowen N.J. et al., 2009).
 
@@ -75,13 +86,29 @@ supports the hypothesis that human ovarian surface epithelia are
 multipotent and capable of serving as ovarian cancer initiating cells.
 *BMC Medical Genomics*, 2(1). <https://doi.org/10.1186/1755-8794-2-71>
 
+Kassambara A, Mundt F (2020). *factoextra: Extract and Visualize the
+Results of Multivariate Data Analyses*. R package version 1.0.7,
+<https://CRAN.R-project.org/package=factoextra>.
+
 R Core Team (2022). R: A language and environment for statistical
 computing. R Foundation for Statistical Computing, Vienna, Austria. URL
 <https://www.R-project.org/>.
 
+Sebastien Le, Julie Josse, Francois Husson (2008). FactoMineR: An R
+Package for Multivariate Analysis. Journal of Statistical Software,
+25(1), 1-18. 10.18637/jss.v025.i01
+
+Tenenbaum D, Maintainer B (2022). *KEGGREST: Client-side REST access to
+the Kyoto Encyclopedia of Genes and Genomes (KEGG)*. R package version
+1.36.3.
+
 Wei T, Simko V (2021). R package ‘corrplot’: Visualization of a
 Correlation Matrix. (Version 0.92),
 <https://github.com/taiyun/corrplot>.
+
+Wickham H (2022). *stringr: Simple, Consistent Wrappers for Common
+String Operations*. R packageversion 1.5.0,
+<https://CRAN.R-project.org/package=stringr>.
 
 Wickham H, François R, Henry L, Müller K (2022). dplyr: A Grammar of
 Data Manipulation. <https://dplyr.tidyverse.org>,

@@ -10,8 +10,8 @@
 #'    rows and samples as columns.
 #' @param method A parameter to specify normalization method. The options are:
 #' \itemize{
-#'   \item "total" - total count normalization (default)
-#'   \item "log" - log2 transformation
+#'   \item "log" - log2 transformation (default)
+#'   \item "total" - total count normalization
 #'   \item "standard" - z-score standardization
 #' }
 #'
@@ -23,18 +23,18 @@
 #' # Using OVExpression dataset in package
 #'
 #' # Example 1:
-#' # Using default normalization method "total"
-#' normalizedExpr <- exprNormalization(OVExpression)
+#' # Using default normalization method "log"
+#' logExpr <- exprNormalization(OVExpression)
+#' head(logExpr[ , 1:5])
+#'
+#'
+#' # Example 2:
+#' # Using total count normalization
+#' normalizedExpr <- exprNormalization(OVExpression, method = "total")
 #' head(normalizedExpr[ , 1:5])
 #'
 #' # sum of each column/sample is 1
 #' colSums(normalizedExpr)
-#'
-#'
-#' # Example 2:
-#' # Using log2 transformation
-#' logExpr <- exprNormalization(OVExpression, method = "log")
-#' head(logExpr[ , 1:5])
 #'
 #'
 #' # Example 3:
@@ -55,9 +55,14 @@
 #' Manipulation. <https://dplyr.tidyverse.org>,
 #' <https://github.com/tidyverse/dplyr>.
 
-exprNormalization <- function(expressionData, method = "total") {
-  # check if expressionData has missing values, message that there may be
-  # unintended side effects
+exprNormalization <- function(expressionData, method = "log") {
+
+  # check if expressionData has missing values
+  if (any(is.na(expressionData))) {
+    message("expressionData has missing values, this may lead to unintended side effects")
+  } else {
+    ;
+  }
 
   if (method == "total"){
     # divide each column (sample) by total sum of expression levels in column
@@ -71,7 +76,7 @@ exprNormalization <- function(expressionData, method = "total") {
       dplyr::mutate_all(~(scale(.) %>%
                             as.vector))
   } else {
-    stop("Invalid input to method. Valid inputs for method are \"total\", \"log\" or \"standard\".")
+    stop("Invalid input to method. Valid inputs for method are \"log\", \"total\" or \"standard\".")
   }
   return(normData)
 }

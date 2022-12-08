@@ -14,7 +14,8 @@ Returns a character vector containing genes from the inputted entry
 }
 \description{
 A function that returns the genes associated with a KEGG disease entry, using
-the function keggGET from the KEGGREST package.
+the function keggGET from the KEGGREST package. This function can be used to
+get a list of genes of interest to include in the plot in the exprPlot function.
 }
 \examples{
 # Example:

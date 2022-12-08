@@ -34,12 +34,23 @@ ui <- fluidPage(
 
       br(),
 
-
       downloadButton("expression", "Download expression data"),
       downloadButton("sample", "Download sample data"),
 
       # Horizontal line ----
       tags$hr(),
+
+      #' @param exprFilePath A string of the path to the file containing gene
+      #'    expression data. The file should be a matrix with the first row as sample
+      #'    names, the first column as gene names, and expression values in the rest
+      #'    of the matrix.
+      #' @param sampleFilePath A string of the path to the file containing sample
+      #'    information. The file should have the first column as sample names, and
+      #'    the second column as their type.
+      tags$p("The expression file should be a matrix with the first row as sample names,
+      the first column as gene names, and numeric expression values in the rest of the matrix.
+      The sample file should have the first column as sample names, and the second column as their type.
+      Please refer to the example datasets for the format."),
 
       # Input: Select a file ----
       fileInput("file1", "Choose Expression CSV File",
@@ -62,6 +73,8 @@ ui <- fluidPage(
                                Semicolon = "semicolon"),
                    selected = "comma"),
 
+
+
       # Horizontal line ----
       tags$hr(),
 
@@ -82,14 +95,19 @@ ui <- fluidPage(
                            splitLayout(radioButtons("viewing", "File to view",
                                                  choices = c(Expression = "expression",
                                                              Sample = "sample"),
-                                                 selected = "expression",
-                                                 inline = TRUE),
-                                    radioButtons("disp", "Display",
-                                                 choices = c(Head = "head",
-                                                             All = "all"),
-                                                 selected = "head",
-                                                 inline = TRUE)
-                           ),
+                                                 selected = "expression"),
+                                       radioButtons("norm", "Apply normalization ",
+                                                    choices = c("Log2 transformation" = "log",
+                                                                "Total count normalization" = "total",
+                                                                "Z-score standardization" = "standard",
+                                                                "None" = "none"),
+                                                    selected = "none"),
+                                        radioButtons("disp", "Display",
+                                                     choices = c(Head = "head",
+                                                                 All = "all"),
+                                                     selected = "head")
+                             ),
+                           br(),
 
                            tableOutput("contents")),
 
@@ -135,6 +153,13 @@ server <- function(input, output) {
       }
     )
 
+    if (input$norm == "none") {
+      ; # no normalization
+    } else {
+      df$expressionData <- exprNormalization(df$expressionData, method = input$norm)
+    }
+
+
     expressionData$df_data <- df$expressionData
     sampleData$df_data <- df$sampleData
 
@@ -158,16 +183,8 @@ server <- function(input, output) {
 
   }, rownames = TRUE)
 
-  output$textCase <- renderText({input$case})
 
-  output$textControl <- renderText({input$control})
-
-
-  # for rankDEG (not working)
-  # problem with case/control/method (not with dataframes)
   output$deg <- renderTable({
-
-    #if (! (is.null(input$case) | is.null(input$control))){
       if (! (is.null(input$method))){
         df <- rankDEG(expressionData = expressionData$df_data,
                       sampleData = sampleData$df_data,
@@ -175,31 +192,7 @@ server <- function(input, output) {
                       control = input$control,
                       method = as.character(input$method))
 
-        # return(df)
       }
-#    }
-
-
-
-    # req(input$case)
-    # req(input$control)
-    #
-    # if (! (is.null(input$case) | is.null(input$control))){
-    #   tryCatch(
-    #     {
-    #       df <- rankDEG(expressionData = expressionData$df_data,
-    #                     sampleData = sampleData$df_data,
-    #                     case = input$case,
-    #                     control = input$control,
-    #                     method = input$method)
-    #     },
-    #     error = function(e) {
-    #       # return a safeError if a parsing error occurs
-    #       stop(safeError(e))
-    #     }
-    #   )
-    # }
-    # return(df)
 
   }, rownames = TRUE)
 

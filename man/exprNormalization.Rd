@@ -4,7 +4,7 @@
 \alias{exprNormalization}
 \title{Normalizes Gene Expression Data}
 \usage{
-exprNormalization(expressionData, method = "total")
+exprNormalization(expressionData, method = "log")
 }
 \arguments{
 \item{expressionData}{A dataframe of gene expression data, with genes as
@@ -12,8 +12,8 @@ rows and samples as columns.}
 
 \item{method}{A parameter to specify normalization method. The options are:
 \itemize{
-\item "total" - total count normalization (default)
-\item "log" - log2 transformation
+\item "log" - log2 transformation (default)
+\item "total" - total count normalization
 \item "standard" - z-score standardization
 }}
 }
@@ -31,7 +31,7 @@ manipulate the data.
 # Using OVExpression dataset in package
 
 # Example 1:
-# Using default normalization method "total"
+# Using default normalization method "log"
 normalizedExpr <- exprNormalization(OVExpression)
 head(normalizedExpr[ , 1:5])
 
@@ -40,8 +40,8 @@ colSums(normalizedExpr)
 
 
 # Example 2:
-# Using log2 transformation
-logExpr <- exprNormalization(OVExpression, method = "log")
+# Using total count normalization
+logExpr <- exprNormalization(OVExpression, method = "total")
 head(logExpr[ , 1:5])
 
 

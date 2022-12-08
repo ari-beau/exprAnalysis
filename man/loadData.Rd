@@ -9,7 +9,7 @@ loadData(exprFilePath, sampleFilePath, sep = "tab")
 \arguments{
 \item{exprFilePath}{A string of the path to the file containing gene
 expression data. The file should be a matrix with the first row as sample
-names, the first column as gene names, and expression values in the rest
+names, the first column as gene names, and numeric expression values in the rest
 of the matrix.}
 
 \item{sampleFilePath}{A string of the path to the file containing sample

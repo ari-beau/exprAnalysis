@@ -22,7 +22,9 @@ Imports:
     ggplot2, 
     reshape, 
     shiny, 
-    stringr
+    stringr, 
+    FactoMineR, 
+    factoextra
 Suggests: 
     knitr,
     rmarkdown,
