@@ -38,6 +38,7 @@
 #' loadedData$sampleData        # dataframe for sample information
 #'
 #' @export
+#' @importFrom utils read.csv read.csv2 read.table
 
 loadData <- function(exprFilePath, sampleFilePath, sep = "tab") {
   if (sep == "tab"){
