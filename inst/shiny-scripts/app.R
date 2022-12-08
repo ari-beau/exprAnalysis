@@ -119,9 +119,16 @@ ui <- fluidPage(
                                         selected = "t"),
                            tableOutput("deg")),
 
-                  tabPanel("Plot",
+                  tabPanel("Expression Plot",
                            br(),
-                           plotOutput("plot")))
+                           tags$p("Type in names of genes to include into the plot.
+                                  Each gene should be separated by a comma. If textbox is empty, all genes are included."),
+                           textInput("include", "Genes", value = ""),
+                           plotOutput("plot")),
+
+                  tabPanel("Pairwise Correlation of Genes",
+                           br(),
+                           plotOutput("corr")))
 
 
     )
@@ -198,8 +205,15 @@ server <- function(input, output) {
 
 
   output$plot <- renderPlot({
+    if (gsub(" ", "", input$include) == "") {
+      genesIncluded <- NULL
+    } else {
+      genesIncluded <- gsub(" ", "", unlist(strsplit(input$include,",")))
+    }
+
     exprPlot(expressionData = expressionData$df_data,
-    sampleData = sampleData$df_data)
+    sampleData = sampleData$df_data,
+    genes = genesIncluded)
   })
 
   output$expression <- downloadHandler(
@@ -215,6 +229,10 @@ server <- function(input, output) {
       download.file("https://raw.githubusercontent.com/ari-beau/expressionAnalysis/master/inst/extdata/OVSample.csv", file)
     }
   )
+
+  output$corr <- renderPlot({
+    correlationPlot(expressionData = expressionData$df_data)
+  })
 
 }
 
