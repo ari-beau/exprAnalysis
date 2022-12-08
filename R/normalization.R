@@ -56,7 +56,6 @@
 #' <https://github.com/tidyverse/dplyr>.
 
 exprNormalization <- function(expressionData, method = "log") {
-
   # check if expressionData has missing values
   if (any(is.na(expressionData))) {
     message("expressionData has missing values, this may lead to unintended side effects")

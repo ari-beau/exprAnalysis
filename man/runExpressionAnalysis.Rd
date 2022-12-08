@@ -11,9 +11,11 @@ No return value but opens up a Shiny page.
 }
 \description{
 A function that launches the shiny app for the expressionAnalysis package.
-The shiny app would load gene expression and sample data from files, and can
-rank differentially expressed genes in cases and controls and produce
-boxplots to show the visualize this.
+The shiny app would load gene expression and sample data from files, show the
+pairwise correlation between genes, rank differentially expressed genes in
+cases and controls and produce boxplots to show the visualize this. The code
+in runExpressionAnalysis is adapted from from the code in app.R from the
+TestingPackage package (Silva A., 2022).
 }
 \examples{
 \dontrun{
@@ -26,4 +28,7 @@ expressionAnalysis::runExpressionAnalysis()
 Chang W, Cheng J, Allaire J, Sievert C, Schloerke B, Xie Y, Allen J, McPherson J, Dipert A,
 Borges B (2022). \emph{shiny: Web Application Framework for R}. R package version 1.7.3,
 \url{https://CRAN.R-project.org/package=shiny}.
+
+Silva, A. (2022) TestingPackage: An Example R Package For BCB410H.
+Unpublished. URL https://github.com/anjalisilva/TestingPackage."
 }

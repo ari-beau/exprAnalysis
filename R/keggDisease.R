@@ -1,4 +1,4 @@
-#' Gets Genes Associated with KEGG Disease Entry
+#' Retrieve Genes Associated with KEGG Disease Entry
 #'
 #' A function that returns the genes associated with a KEGG disease entry, using
 #' the function keggGET from the KEGGREST package. This function can be used to
@@ -25,7 +25,7 @@
 #' Operations_. R packageversion 1.5.0, <https://CRAN.R-project.org/package=stringr>.
 
 keggDiseaseGenes <- function(entryID) {
-  # use keggGet to entry
+  # use keggGet to retrieve entry
   disease <- tryCatch({
     KEGGREST::keggGet(entryID)
     },

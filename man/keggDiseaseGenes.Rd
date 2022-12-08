@@ -2,7 +2,7 @@
 % Please edit documentation in R/keggDisease.R
 \name{keggDiseaseGenes}
 \alias{keggDiseaseGenes}
-\title{Gets Genes Associated with KEGG Disease Entry}
+\title{Retrieve Genes Associated with KEGG Disease Entry}
 \usage{
 keggDiseaseGenes(entryID)
 }

@@ -69,7 +69,7 @@ An overview of the package is illustrated below.
 ## Contributions
 
 The author of the package is Arianne Beauregard. The *loadData* function reads
-in data different file types to prepare the data for the rest of the package. 
+in data from multiple file types to prepare the data for the rest of the package. 
 The *exprNormalization* 
 function makes use of the `dplyr` R package. The *correlationPlot* function 
 uses the `corrplot` R package to produce a pairwise correlation plot of genes. 
@@ -85,8 +85,8 @@ The `assertthat` R package is used for checking for valid function inputs.
 
 <br>
 <br>
-The datasets *OVSample* and *OVExpression* are from ovarian cancer gene 
-expression profiling experiment (Bowen N.J. et al., 2009).
+The datasets *OVSample* and *OVExpression* are from an ovarian cancer gene 
+expression profiling experiment from Bowen N.J. et al. (2009).
 
 ## References
 

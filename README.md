@@ -62,12 +62,12 @@ An overview of the package is illustrated below.
 ## Contributions
 
 The author of the package is Arianne Beauregard. The *loadData* function
-reads in data different file types to prepare the data for the rest of
-the package. The *exprNormalization* function makes use of the `dplyr` R
-package. The *correlationPlot* function uses the `corrplot` R package to
-produce a pairwise correlation plot of genes. The *rankDEG* function
-uses different methods to rank differential gene expression. The
-*exprPlot* function uses the function *melt* from the `reshape` R
+reads in data from multiple file types to prepare the data for the rest
+of the package. The *exprNormalization* function makes use of the
+`dplyr` R package. The *correlationPlot* function uses the `corrplot` R
+package to produce a pairwise correlation plot of genes. The *rankDEG*
+function uses different methods to rank differential gene expression.
+The *exprPlot* function uses the function *melt* from the `reshape` R
 package to reshape the expression dataframe. It also uses the `ggplot2`
 package to produce the boxplot. The *keggDiseaseGenes* function uses the
 `KEGGREST` package as an interface to KEGG, and uses the `stringr`
@@ -76,8 +76,9 @@ package to manipulate strings. The *exprPCA* function uses the
 plot. The `shiny` package was used to create the Shiny app. The
 `assertthat` R package is used for checking for valid function inputs.
 
-<br> <br> The datasets *OVSample* and *OVExpression* are from ovarian
-cancer gene expression profiling experiment (Bowen N.J. et al., 2009).
+<br> <br> The datasets *OVSample* and *OVExpression* are from an ovarian
+cancer gene expression profiling experiment from Bowen N.J. et
+al. (2009).
 
 ## References
 
